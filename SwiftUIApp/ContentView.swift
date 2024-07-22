@@ -15,7 +15,7 @@ struct ContentView: View {
         VStack {
             HStack {
                 Text(viewModel.getData())
-                ProgressView(value: viewModel.getProgressData())
+                ProgressView(value: viewModel.getProgressData(), total: 10)
             }.fixedSize(horizontal: false, vertical: false)
             Divider()
             Button (
@@ -25,11 +25,11 @@ struct ContentView: View {
             ) {
                 Text("Send Data")
             }
-            Toggle("Toggle", isOn: viewModel.$toggleState).onChange(of: viewModel.toggleState) { oldValue, newValue in
+            Toggle("Toggle", isOn: $viewModel.toggleState).onChange(of: viewModel.toggleState) { oldValue, newValue in
                 viewModel.setSwitchChecked(isChecked: newValue)
             }
             Picker(
-                selection: viewModel.$pickerState,
+                selection: $viewModel.pickerState,
                 label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/
             ) {
                 /*@START_MENU_TOKEN@*/Text("1").tag(1)/*@END_MENU_TOKEN@*/
@@ -38,15 +38,16 @@ struct ContentView: View {
                 viewModel.setData(data: "Picker set to \(newValue)")
             }.pickerStyle(.automatic)
             Stepper(
-                value: viewModel.$stepperState,
+                value: $viewModel.stepperState,
                 in: 0...10
             ) {
                 Text("Stepper \(viewModel.stepperState)")
             }.onChange(of: viewModel.stepperState) { oldValue, newValue in
                 viewModel.setData(data: "Stepper set to \(newValue)")
+                viewModel.setProgressData(progressData: Float(newValue))
             }
             Slider(
-                value: viewModel.$sliderState,
+                value: $viewModel.sliderState,
                 in: 0...10,
                 step: 1,
                 onEditingChanged: { data in
@@ -59,6 +60,7 @@ struct ContentView: View {
                 }
             ).onChange(of: viewModel.sliderState) { oldValue, newValue in
                 viewModel.setData(data: "Slider set to \(newValue)")
+                viewModel.setProgressData(progressData: newValue)
             }
         }
         .frame(maxHeight: .infinity)

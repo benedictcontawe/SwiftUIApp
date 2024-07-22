@@ -11,10 +11,10 @@ class ViewModel : ObservableObject {
     @Published public var model : [CustomModel]
     @Published private var data : String
     @Published private var progressData : Float
-    @State var toggleState : Bool = true
-    @State var pickerState : Int = 0
-    @State var stepperState : Int = 5
-    @State var sliderState : Float = 5.0
+    @Published var toggleState : Bool = true
+    @Published var pickerState : Int = 0
+    @Published var stepperState : Int = 5
+    @Published var sliderState : Float = 5.0
     
     init() {
         model = []
