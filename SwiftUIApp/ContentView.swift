@@ -9,53 +9,58 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State private var progressState : Double = 0.5
+    @State private var toggleState : Bool = true
+    @State private var stepperState : Int = 5
+    @State private var sliderState : Float = 5.0
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        VStack {
+            HStack {
+                Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+                ProgressView(value: progressState)
+            }.fixedSize(horizontal: false, vertical: false)
+            Divider()
+            Button (
+                action: {
+                    
                 }
-                .onDelete(perform: deleteItems)
+            ) {
+                Text("Send Data")
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            Toggle("Toggle", isOn: $toggleState)
+            Picker(
+                selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/,
+                label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/
+            ) {
+                /*@START_MENU_TOKEN@*/Text("1").tag(1)/*@END_MENU_TOKEN@*/
+                Text("2").tag(2)
+            }.pickerStyle(.automatic)
+            Stepper(
+                value: $stepperState,
+                in: 0...10
+            ) {
+                Text("Stepper")
+            }
+            Slider(
+                value: $sliderState,
+                in: 0...10,
+                step: 1,
+                onEditingChanged: { data in
+                    
+                },
+                minimumValueLabel: Text("0"),
+                maximumValueLabel: Text("10"),
+                label: {
+                    Text("Slider")
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+            )
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        .frame(maxHeight: .infinity)
+        
     }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    ContentView().modelContainer(for: Item.self, inMemory: true)
 }
