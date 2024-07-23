@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ViewModel : ObservableObject {
-    @Published public var model : [CustomModel]
+    @Published public var models : [DrawerModel]
     @Published private var data : String
     @Published private var progressData : Float
     @Published var toggleState : Bool = true
@@ -17,7 +17,34 @@ class ViewModel : ObservableObject {
     @Published var sliderState : Float = 5.0
     
     init() {
-        model = []
+        models = [
+            DrawerModel(text: "AAA", isHeader: true, isExpand: true, icon: nil),
+            DrawerModel(text: "BBB", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "CCC", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "DDD", isHeader: true, isExpand: true, icon: nil),
+            DrawerModel(text: "EEE", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "FFF", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "GGG", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "HHH", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "III", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "JJJ", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "KKK", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "LLL", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "MMM", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "NNN", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "OOO", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "PPP", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "QQQ", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "RRR", isHeader: true, isExpand: true, icon: nil),
+            DrawerModel(text: "SSS", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "TTT", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "UUU", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "VVV", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "WWW", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "XXX", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "YYY", isHeader: false, isExpand: true, icon: nil),
+            DrawerModel(text: "ZZZ", isHeader: false, isExpand: true, icon: nil)
+        ]
         data = "Data"
         progressData = 0.0
     }
@@ -47,11 +74,11 @@ class ViewModel : ObservableObject {
     }
     
     func shuffleModel() {
-        model.shuffle()
+        models.shuffle()
     }
     
     func reverseOrder() {
-        model.reverse()
+        models.reverse()
     }
     
     deinit {
