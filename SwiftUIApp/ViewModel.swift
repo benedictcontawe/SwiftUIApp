@@ -9,12 +9,7 @@ import SwiftUI
 
 class ViewModel : ObservableObject {
     @Published public var models : [DrawerModel]
-    @Published private var data : String
-    @Published private var progressData : Float
-    @Published var toggleState : Bool = true
-    @Published var pickerState : Int = 0
-    @Published var stepperState : Int = 5
-    @Published var sliderState : Float = 5.0
+    @Published public var showMenu = false
     
     init() {
         models = [
@@ -45,32 +40,6 @@ class ViewModel : ObservableObject {
             DrawerModel(text: "YYY", isHeader: false, isExpand: true, icon: nil),
             DrawerModel(text: "ZZZ", isHeader: false, isExpand: true, icon: nil)
         ]
-        data = "Data"
-        progressData = 0.0
-    }
-    
-    func setData(data : String) {
-        self.data = data
-    }
-    
-    func getData() -> String {
-        return self.data
-    }
-    
-    func setProgressData(progressData : Float) {
-        self.progressData = progressData
-    }
-    
-    func getProgressData() -> Float {
-        return self.progressData
-    }
-    
-    func setSwitchChecked(isChecked : Bool) {
-        if isChecked {
-            setData(data: "Toggle is On")
-        } else {
-            setData(data: "Toggle is Off")
-        }
     }
     
     func shuffleModel() {

@@ -10,15 +10,20 @@ import SwiftUI
 struct SideMenuCellView : View {
     let model : DrawerModel
     var body: some View {
-        HStack {
-            Image(systemName: "paperplane")
-                .imageScale(.small)
-            Text(model.text)
-                .font(.subheadline)
-            Spacer()
-        }
-        .padding(.leading)
-        .frame(height: 44)
+        Button(
+            action: {
+                
+            }, label: {
+                HStack {
+                    Image(systemName: "paperplane")
+                        .imageScale(.small)
+                    Text(model.text)
+                        .font(.subheadline)
+                    Spacer()
+                }
+                .padding(.leading)
+                .frame(height: 44)
+            })
     }
 }
 

@@ -10,7 +10,6 @@ import SwiftData
 
 struct ContentView: View {
     @ObservedObject var viewModel : ViewModel = ViewModel()
-    @State public var showMenu = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -20,15 +19,15 @@ struct ContentView: View {
                         .foregroundStyle(.tint)
                     Text("Hello World")
                 }
-                SideMenuView(isShowing: $showMenu, models: $viewModel.models)
+                SideMenuView(isShowing: $viewModel.showMenu, models: $viewModel.models)
             }
-            .toolbar(showMenu ? .hidden : .visible, for: .navigationBar)
+            .toolbar(viewModel.showMenu ? .hidden : .visible, for: .navigationBar)
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
-                        showMenu.toggle()
+                        viewModel.showMenu.toggle()
                     }, label: {
                         Image(systemName: "line.3.horizontal")
                     } )
