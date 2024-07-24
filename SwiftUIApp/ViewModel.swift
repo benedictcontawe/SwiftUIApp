@@ -42,6 +42,40 @@ class ViewModel : ObservableObject {
         ]
     }
     
+    public func onHeaderCellClick(position : Int, model : DrawerModel) {
+        if model.isHeader && model.isExpand {
+            setCompress(model : model, position : position)
+        } else if model.isHeader && model.isExpand == false {
+            setExpand(model : model, position : position)
+        }
+    }
+    
+    private func setExpand(model : DrawerModel, position : Int) {
+        models[position] = model
+        for index  in position ..< models.count {
+            if models[index].isHeader && index != position {
+                break
+            } else if models[index].isHeader == false {
+                models[index].isExpand = true
+            } else {
+                models[index].isExpand = false
+            }
+        }
+    }
+    
+    private func setCompress(model : DrawerModel, position : Int) {
+        models[position] = model
+        for index  in position ..< models.count {
+            if models[index].isHeader && index != position {
+                break
+            } else if models[index].isHeader == false {
+                models[index].isExpand = false
+            } else {
+                models[index].isExpand = false
+            }
+        }
+    }
+    
     func shuffleModel() {
         models.shuffle()
     }

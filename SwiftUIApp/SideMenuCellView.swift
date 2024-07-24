@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SideMenuCellView : View {
+    //@Binding var viewModel : ViewModel
+    //@Binding var index : Int
     let model : DrawerModel
     var body: some View {
         Button(
@@ -19,11 +21,13 @@ struct SideMenuCellView : View {
                         .imageScale(.small)
                     Text(model.text)
                         .font(.subheadline)
+                    Text(model.isExpand.description)
                     Spacer()
                 }
                 .padding(.leading)
                 .frame(height: 44)
-            })
+            }
+        )
     }
 }
 

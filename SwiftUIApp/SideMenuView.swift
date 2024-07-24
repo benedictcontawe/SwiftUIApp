@@ -19,7 +19,11 @@ struct SideMenuView : View {
                     VStack(alignment: .leading, spacing: 32) {
                         SideMenuHeaderView()
                         List(models) { model in
-                            SideMenuCellView(model: model)
+                            if model.isHeader {
+                                SideMenuHeaderCellView(model: model)
+                            } else {
+                                SideMenuCellView(model: model)
+                            }
                         }
                         Spacer()
                     }
