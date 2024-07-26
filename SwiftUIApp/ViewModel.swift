@@ -52,21 +52,19 @@ class ViewModel : ObservableObject {
     
     private func setExpand(model : DrawerModel, position : Int) {
         //models[position] = model
-        models[position].isExpand = true
         for index  in position ..< models.count {
             if models[index].isHeader && index != position {
                 break
             } else if models[index].isHeader == false {
                 models[index].isExpand = true
             } else {
-                models[index].isExpand = false
+                models[index].isExpand = true
             }
         }
     }
     
     private func setCompress(model : DrawerModel, position : Int) {
-        //models[position] = model
-        models[position].isExpand = false
+        models[position] = model
         for index  in position ..< models.count {
             if models[index].isHeader && index != position {
                 break

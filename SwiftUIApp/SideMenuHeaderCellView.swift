@@ -13,7 +13,9 @@ struct SideMenuHeaderCellView : View {
     let action : (Int, DrawerModel) -> Void
     var body: some View {
         Button(
-            action: { action(position, model) },
+            action: {
+                action(position, model)
+            },
             label: {
                 HStack {
                     if model.isExpand {

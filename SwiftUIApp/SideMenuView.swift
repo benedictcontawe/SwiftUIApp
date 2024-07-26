@@ -14,7 +14,7 @@ struct SideMenuView : View {
             if viewModel.showMenu {
                 Rectangle().opacity(0.3).ignoresSafeArea().onTapGesture { viewModel.showMenu.toggle() }
                 HStack {
-                    VStack(alignment: .leading, spacing: 32) {
+                    VStack(alignment: .leading, spacing: 13) {
                         SideMenuHeaderView()
                         List(Array(viewModel.models.enumerated()), id: \.element.id) { index, model in
                             if model.isHeader {
