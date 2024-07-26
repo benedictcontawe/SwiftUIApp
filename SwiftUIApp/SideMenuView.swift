@@ -10,7 +10,7 @@ import SwiftUI
 struct SideMenuView : View {
     @Binding var isShowing : Bool
     @Binding var models : [DrawerModel]
-
+    @ObservedObject var viewModel : ViewModel
     var body: some View {
         ZStack {
             if isShowing {
@@ -18,9 +18,11 @@ struct SideMenuView : View {
                 HStack {
                     VStack(alignment: .leading, spacing: 32) {
                         SideMenuHeaderView()
-                        List(models) { model in
+                        List(Array(models.enumerated()), id: \.element.id) { index, model in
                             if model.isHeader {
-                                SideMenuHeaderCellView(model: model)
+                                SideMenuHeaderCellView(position: index, model: model, action: { _index, _model in
+                                    viewModel.onHeaderCellClick(position: _index, model: _model)
+                                })
                             } else {
                                 SideMenuCellView(model: model)
                             }
@@ -59,6 +61,7 @@ struct SideMenuView : View {
             DrawerModel(text: "NNN", isHeader: false, isExpand: true, icon: nil),
             DrawerModel(text: "OOO", isHeader: false, isExpand: true, icon: nil),
             DrawerModel(text: "PPP", isHeader: false, isExpand: true, icon: nil)
-        ])
+        ]),
+        viewModel: ViewModel()
     )
 }

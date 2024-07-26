@@ -19,7 +19,11 @@ struct ContentView: View {
                         .foregroundStyle(.tint)
                     Text("Hello World")
                 }
-                SideMenuView(isShowing: $viewModel.showMenu, models: $viewModel.models)
+                SideMenuView(
+                    isShowing: $viewModel.showMenu,
+                    models: $viewModel.models,
+                    viewModel: viewModel
+                )
             }
             .toolbar(viewModel.showMenu ? .hidden : .visible, for: .navigationBar)
             .navigationTitle("Home")

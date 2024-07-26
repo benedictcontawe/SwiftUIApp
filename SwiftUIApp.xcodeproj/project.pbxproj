@@ -47,7 +47,6 @@
 		DC5D32BA2C4E6B6100D6EA61 = {
 			isa = PBXGroup;
 			children = (
-				DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCellView.swift */,
 				DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */,
 				DC5D32C42C4E6B6100D6EA61 /* Products */,
 			);
@@ -64,6 +63,7 @@
 		DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCellView.swift */,
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */,
 				DC5DA2EF2C4FAB1200F9E88F /* DrawerModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,

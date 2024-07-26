@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct SideMenuHeaderCellView : View {
+    let position : Int
     let model : DrawerModel
+    let action : (Int, DrawerModel) -> Void
     var body: some View {
         Button(
-            action: {
-                //viewModel.onHeaderCellClick(position: <#T##Int#>, model: model)
-            }, label: {
+            action: { action(position, model) },
+            label: {
                 HStack {
                     if model.isExpand {
                         Image(systemName: "arrow.up")
@@ -22,7 +23,6 @@ struct SideMenuHeaderCellView : View {
                         Image(systemName: "arrow.down")
                             .imageScale(.small)
                     }
-                        
                     Text(model.text)
                         .font(.subheadline)
                     //Text(model.isExpand.description)
@@ -36,5 +36,5 @@ struct SideMenuHeaderCellView : View {
 }
 
 #Preview {
-    SideMenuHeaderCellView(model: DrawerModel(text: "Text", isHeader: false, isExpand: true, icon: nil))
+    SideMenuHeaderCellView(position: 0, model: DrawerModel(text: "Text", isHeader: false, isExpand: true, icon: nil)) { position, model in }
 }
