@@ -12,7 +12,7 @@ struct SideMenuCellView : View {
     //@Binding var index : Int
     let model : DrawerModel
     var body: some View {
-        Button(
+        Button (
             action: {
                 
             }, label: {

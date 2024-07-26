@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct SideMenuView : View {
-    @Binding var isShowing : Bool
-    @Binding var models : [DrawerModel]
     @ObservedObject var viewModel : ViewModel
     var body: some View {
         ZStack {
-            if isShowing {
-                Rectangle().opacity(0.3).ignoresSafeArea().onTapGesture { isShowing.toggle() }
+            if viewModel.showMenu {
+                Rectangle().opacity(0.3).ignoresSafeArea().onTapGesture { viewModel.showMenu.toggle() }
                 HStack {
                     VStack(alignment: .leading, spacing: 32) {
                         SideMenuHeaderView()
-                        List(Array(models.enumerated()), id: \.element.id) { index, model in
+                        List(Array(viewModel.models.enumerated()), id: \.element.id) { index, model in
                             if model.isHeader {
                                 SideMenuHeaderCellView(position: index, model: model, action: { _index, _model in
                                     viewModel.onHeaderCellClick(position: _index, model: _model)
@@ -37,31 +35,12 @@ struct SideMenuView : View {
                 .transition(.move(edge: .leading))
             }
         }
-        .animation(.easeInOut, value: isShowing)
+        .animation(.easeInOut, value: viewModel.showMenu)
     }
 }
 
 #Preview {
     SideMenuView(
-        isShowing: .constant(true),
-        models: .constant([
-            DrawerModel(text: "AAA", isHeader: true, isExpand: true, icon: nil),
-            DrawerModel(text: "BBB", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "CCC", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "DDD", isHeader: true, isExpand: true, icon: nil),
-            DrawerModel(text: "EEE", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "FFF", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "GGG", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "HHH", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "III", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "JJJ", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "KKK", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "LLL", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "MMM", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "NNN", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "OOO", isHeader: false, isExpand: true, icon: nil),
-            DrawerModel(text: "PPP", isHeader: false, isExpand: true, icon: nil)
-        ]),
         viewModel: ViewModel()
     )
 }

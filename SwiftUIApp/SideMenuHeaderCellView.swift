@@ -19,7 +19,7 @@ struct SideMenuHeaderCellView : View {
                     if model.isExpand {
                         Image(systemName: "arrow.up")
                             .imageScale(.small)
-                    } else {
+                    } else if model.isExpand == false  {
                         Image(systemName: "arrow.down")
                             .imageScale(.small)
                     }

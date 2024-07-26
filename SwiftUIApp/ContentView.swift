@@ -20,8 +20,6 @@ struct ContentView: View {
                     Text("Hello World")
                 }
                 SideMenuView(
-                    isShowing: $viewModel.showMenu,
-                    models: $viewModel.models,
                     viewModel: viewModel
                 )
             }
