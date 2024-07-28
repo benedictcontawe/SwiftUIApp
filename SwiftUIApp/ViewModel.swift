@@ -10,7 +10,7 @@ import SwiftUI
 class ViewModel : ObservableObject {
     @Published public var models : [DrawerModel]
     @Published public var showMenu = false
-    
+    @Published public var selectedPage: String = "Hello World"
     init() {
         models = [
             DrawerModel(text: "AAA", isHeader: true, isExpand: true, icon: nil),
@@ -43,10 +43,12 @@ class ViewModel : ObservableObject {
     }
     
     public func onHeaderCellClick(position : Int, model : DrawerModel) {
-        if model.isHeader && model.isExpand {
-            setCompress(model : model, position : position)
-        } else if model.isHeader && model.isExpand == false {
-            setExpand(model : model, position : position)
+        withAnimation {
+            if model.isHeader && model.isExpand {
+                setCompress(model : model, position : position)
+            } else if model.isHeader && model.isExpand == false {
+                setExpand(model : model, position : position)
+            }
         }
     }
     

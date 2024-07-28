@@ -26,11 +26,21 @@ struct SideMenuView: View {
                         SideMenuHeaderView()
                         List(Array(viewModel.models.enumerated()), id: \.element.id) { index, model in
                             if model.isHeader {
-                                SideMenuHeaderCellView(position: index, model: viewModel.models[index], action: { _index, _model in
-                                    viewModel.onHeaderCellClick(position: _index, model: _model)
-                                })
+                                SideMenuHeaderCell(
+                                    position: index,
+                                    model: viewModel.models[index],
+                                    action: { _index, _model in
+                                        viewModel.onHeaderCellClick(position: _index, model: _model)
+                                    }
+                                )
                             } else {
-                                SideMenuCellView(model: model)
+                                SideMenuCell(
+                                    model: model,
+                                    action: { text in
+                                        viewModel.selectedPage = text
+                                        viewModel.showMenu = false
+                                    }
+                                )
                             }
                         }
                         Spacer()

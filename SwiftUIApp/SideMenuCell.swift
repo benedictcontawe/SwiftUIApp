@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct SideMenuCellView : View {
+struct SideMenuCell : View {
     let model : DrawerModel
+    let action : (String) -> Void
     var body: some View {
         if model.isExpand {
             Button (
                 action: {
-                    
+                    action(model.text)
                 }, label: {
                     HStack {
                         Image(systemName: "paperplane")
@@ -32,5 +33,5 @@ struct SideMenuCellView : View {
 }
 
 #Preview {
-    SideMenuCellView(model: DrawerModel(text: "Text", isHeader: false, isExpand: true, icon: nil))
+    SideMenuCell(model: DrawerModel(text: "Text", isHeader: false, isExpand: true, icon: nil), action: { text in })
 }

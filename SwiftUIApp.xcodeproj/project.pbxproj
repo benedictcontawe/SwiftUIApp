@@ -7,29 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC5564C92C50FB6D00C51CEF /* SideMenuHeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCellView.swift */; };
+		DC27FDFD2C568E7300611EB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC27FDFC2C568E7300611EB5 /* ContentView.swift */; };
+		DC5564C92C50FB6D00C51CEF /* SideMenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCell.swift */; };
 		DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */; };
-		DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */; };
+		DC5D32C92C4E6B6100D6EA61 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* NavigationView.swift */; };
 		DC5D32CD2C4E6B6300D6EA61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */; };
 		DC5D32D02C4E6B6300D6EA61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CF2C4E6B6300D6EA61 /* Preview Assets.xcassets */; };
 		DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */; };
 		DC5DA2EA2C4FA16200F9E88F /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5DA2E92C4FA16200F9E88F /* SideMenuView.swift */; };
 		DC5DA2EC2C4FA2E000F9E88F /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5DA2EB2C4FA2E000F9E88F /* SideMenuHeaderView.swift */; };
-		DC5DA2EE2C4FA73000F9E88F /* SideMenuCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5DA2ED2C4FA73000F9E88F /* SideMenuCellView.swift */; };
+		DC5DA2EE2C4FA73000F9E88F /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5DA2ED2C4FA73000F9E88F /* SideMenuCell.swift */; };
 		DC5DA2F02C4FAB1200F9E88F /* DrawerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5DA2EF2C4FAB1200F9E88F /* DrawerModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderCellView.swift; sourceTree = "<group>"; };
+		DC27FDFC2C568E7300611EB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderCell.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAppApp.swift; sourceTree = "<group>"; };
-		DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC5D32C82C4E6B6100D6EA61 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC5D32CF2C4E6B6300D6EA61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		DC5DA2E92C4FA16200F9E88F /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		DC5DA2EB2C4FA2E000F9E88F /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
-		DC5DA2ED2C4FA73000F9E88F /* SideMenuCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCellView.swift; sourceTree = "<group>"; };
+		DC5DA2ED2C4FA73000F9E88F /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		DC5DA2EF2C4FAB1200F9E88F /* DrawerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,14 +65,15 @@
 		DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
-				DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCellView.swift */,
+				DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCell.swift */,
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */,
 				DC5DA2EF2C4FAB1200F9E88F /* DrawerModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
-				DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */,
+				DC5D32C82C4E6B6100D6EA61 /* NavigationView.swift */,
+				DC27FDFC2C568E7300611EB5 /* ContentView.swift */,
 				DC5DA2E92C4FA16200F9E88F /* SideMenuView.swift */,
 				DC5DA2EB2C4FA2E000F9E88F /* SideMenuHeaderView.swift */,
-				DC5DA2ED2C4FA73000F9E88F /* SideMenuCellView.swift */,
+				DC5DA2ED2C4FA73000F9E88F /* SideMenuCell.swift */,
 				DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */,
 				DC5D32CE2C4E6B6300D6EA61 /* Preview Content */,
 			);
@@ -157,11 +160,12 @@
 			files = (
 				DC5DA2EA2C4FA16200F9E88F /* SideMenuView.swift in Sources */,
 				DC5DA2EC2C4FA2E000F9E88F /* SideMenuHeaderView.swift in Sources */,
-				DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */,
+				DC5D32C92C4E6B6100D6EA61 /* NavigationView.swift in Sources */,
 				DC5DA2F02C4FAB1200F9E88F /* DrawerModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */,
-				DC5564C92C50FB6D00C51CEF /* SideMenuHeaderCellView.swift in Sources */,
-				DC5DA2EE2C4FA73000F9E88F /* SideMenuCellView.swift in Sources */,
+				DC27FDFD2C568E7300611EB5 /* ContentView.swift in Sources */,
+				DC5564C92C50FB6D00C51CEF /* SideMenuHeaderCell.swift in Sources */,
+				DC5DA2EE2C4FA73000F9E88F /* SideMenuCell.swift in Sources */,
 				DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

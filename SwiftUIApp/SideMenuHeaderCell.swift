@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SideMenuHeaderCellView : View {
+struct SideMenuHeaderCell : View {
     let position : Int
     let model : DrawerModel
     let action : (Int, DrawerModel) -> Void
@@ -38,5 +38,5 @@ struct SideMenuHeaderCellView : View {
 }
 
 #Preview {
-    SideMenuHeaderCellView(position: 0, model: DrawerModel(text: "Text", isHeader: false, isExpand: true, icon: nil)) { position, model in }
+    SideMenuHeaderCell(position: 0, model: DrawerModel(text: "Text", isHeader: false, isExpand: true, icon: nil)) { position, model in }
 }

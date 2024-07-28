@@ -2,45 +2,23 @@
 //  ContentView.swift
 //  SwiftUIApp
 //
-//  Created by Benedict Contawe on 7/22/24.
+//  Created by Benedict Contawe on 7/28/24.
 //
 
 import SwiftUI
-import SwiftData
 
-struct ContentView: View {
-    @ObservedObject var viewModel : ViewModel = ViewModel()
+struct ContentView : View {
+    let text : String
     var body: some View {
-        NavigationStack {
-            ZStack {
-                VStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                    Text("Hello World")
-                }
-                SideMenuView(
-                    viewModel: viewModel
-                )
-            }
-            .toolbar(viewModel.showMenu ? .hidden : .visible, for: .navigationBar)
-            .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        viewModel.showMenu.toggle()
-                    }, label: {
-                        Image(systemName: "line.3.horizontal")
-                    } )
-                }
-            }
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text(text)
         }
-        .frame(maxHeight: .infinity)
-        
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(text: "Hello World")
 }
