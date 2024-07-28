@@ -21,7 +21,7 @@ struct SideMenuCell : View {
                             .imageScale(.small)
                         Text(model.text)
                             .font(.subheadline)
-                        Text(model.isExpand.description)
+                        //Text(model.isExpand.description)
                         Spacer()
                     }
                     .padding(.leading)
