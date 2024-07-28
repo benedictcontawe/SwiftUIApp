@@ -9,11 +9,18 @@ import SwiftUI
 
 struct SideMenuView: View {
     @ObservedObject var viewModel: ViewModel
-    @GestureState private var dragOffset = CGSize.zero
+    @GestureState private var dragOffset: CGSize = CGSize.zero
     var body: some View {
         ZStack {
             if viewModel.showMenu {
-                Rectangle().opacity(0.3).ignoresSafeArea().onTapGesture { viewModel.showMenu.toggle() }
+                Rectangle()
+                    .opacity(0.3)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.showMenu.toggle()
+                        }
+                    }
                 HStack {
                     VStack(alignment: .leading, spacing: 32) {
                         SideMenuHeaderView()
@@ -31,7 +38,7 @@ struct SideMenuView: View {
                     .padding()
                     .frame(width: 270, alignment: .leading)
                     .background(Color.white)
-                    .offset(x: dragOffset.width)
+                    .offset(x: dragOffset.width > 0 ? 0 : dragOffset.width)
                     .gesture(
                         DragGesture()
                             .updating($dragOffset) { value, state, _ in
