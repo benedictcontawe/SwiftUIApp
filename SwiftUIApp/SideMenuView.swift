@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct SideMenuView : View {
-    @ObservedObject var viewModel : ViewModel
+struct SideMenuView: View {
+    @ObservedObject var viewModel: ViewModel
+    @GestureState private var dragOffset = CGSize.zero
     var body: some View {
         ZStack {
             if viewModel.showMenu {
                 Rectangle().opacity(0.3).ignoresSafeArea().onTapGesture { viewModel.showMenu.toggle() }
                 HStack {
-                    VStack(alignment: .leading, spacing: 13) {
+                    VStack(alignment: .leading, spacing: 32) {
                         SideMenuHeaderView()
                         List(Array(viewModel.models.enumerated()), id: \.element.id) { index, model in
                             if model.isHeader {
-                                SideMenuHeaderCellView(position: index, model: model, action: { _index, _model in
+                                SideMenuHeaderCellView(position: index, model: viewModel.models[index], action: { _index, _model in
                                     viewModel.onHeaderCellClick(position: _index, model: _model)
                                 })
                             } else {
@@ -29,7 +30,21 @@ struct SideMenuView : View {
                     }
                     .padding()
                     .frame(width: 270, alignment: .leading)
-                    .background(.white)
+                    .background(Color.white)
+                    .offset(x: dragOffset.width)
+                    .gesture(
+                        DragGesture()
+                            .updating($dragOffset) { value, state, _ in
+                                state = value.translation
+                            }
+                            .onEnded { value in
+                                if value.translation.width < -100 {
+                                    withAnimation {
+                                        viewModel.showMenu = false
+                                    }
+                                }
+                            }
+                    )
                     Spacer()
                 }
                 .transition(.move(edge: .leading))
