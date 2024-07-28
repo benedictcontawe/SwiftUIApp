@@ -9,62 +9,73 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @ObservedObject var viewModel : ViewModel = ViewModel()
-
+    @ObservedObject var viewModel = ViewModel()
     var body: some View {
-        VStack {
-            HStack {
-                Text(viewModel.getData())
-                ProgressView(value: viewModel.getProgressData(), total: 10)
-            }.fixedSize(horizontal: false, vertical: false)
-            Divider()
-            Button (
-                action: {
-                    viewModel.setData(data: "Button was Clicked")
+        GeometryReader { geometry in
+            let horizontalPadding = geometry.size.width * 0.05
+            VStack {
+                Spacer()
+                HStack {
+                    Text(viewModel.getData())
+                    ProgressView(value: viewModel.getProgressData(), total: 10)
                 }
-            ) {
-                Text("Send Data")
-            }
-            Toggle("Toggle", isOn: $viewModel.toggleState).onChange(of: viewModel.toggleState) { oldValue, newValue in
-                viewModel.setSwitchChecked(isChecked: newValue)
-            }
-            Picker(
-                selection: $viewModel.pickerState,
-                label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/
-            ) {
-                /*@START_MENU_TOKEN@*/Text("1").tag(1)/*@END_MENU_TOKEN@*/
-                Text("2").tag(2)
-            }.onChange(of: viewModel.pickerState) { oldValue, newValue in
-                viewModel.setData(data: "Picker set to \(newValue)")
-            }.pickerStyle(.automatic)
-            Stepper(
-                value: $viewModel.stepperState,
-                in: 0...10
-            ) {
-                Text("Stepper \(viewModel.stepperState)")
-            }.onChange(of: viewModel.stepperState) { oldValue, newValue in
-                viewModel.setData(data: "Stepper set to \(newValue)")
-                viewModel.setProgressData(progressData: Float(newValue))
-            }
-            Slider(
-                value: $viewModel.sliderState,
-                in: 0...10,
-                step: 1,
-                onEditingChanged: { data in
+                Spacer()
+                Divider()
+                Spacer()
+                Button (
+                    action: {
+                        viewModel.setData(data: "Button was Clicked")
+                    }
+                ) {
+                    Text("Send Data")
+                }
+                Spacer()
+                Toggle("Toggle", isOn: $viewModel.toggleState).onChange(of: viewModel.toggleState) { oldValue, newValue in
+                    viewModel.setSwitchChecked(isChecked: newValue)
+                }
+                Spacer()
+                Picker(
+                    selection: $viewModel.pickerState,
+                    label: Text("Picker")
+                ) {
+                    Text("1").tag(1)
+                    Text("2").tag(2)
+                }.onChange(of: viewModel.pickerState) { oldValue, newValue in
+                    viewModel.setData(data: "Picker set to \(newValue)")
+                }.pickerStyle(.automatic)
+                Spacer()
+                Stepper(
+                    value: $viewModel.stepperState,
+                    in: 0...10
+                ) {
+                    Text("Stepper \(viewModel.stepperState)")
+                }.onChange(of: viewModel.stepperState) { oldValue, newValue in
+                    viewModel.setData(data: "Stepper set to \(newValue)")
+                    viewModel.setProgressData(progressData: Float(newValue))
+                }
+                Spacer()
+                Slider(
+                    value: $viewModel.sliderState,
+                    in: 0...10,
+                    step: 1,
+                    onEditingChanged: { data in
                     
-                },
-                minimumValueLabel: Text("0"),
-                maximumValueLabel: Text("10"),
-                label: {
-                    Text("Slider")
+                    },
+                    minimumValueLabel: Text("0"),
+                    maximumValueLabel: Text("10"),
+                    label: {
+                        Text("Slider")
+                    }
+                ).onChange(of: viewModel.sliderState) { oldValue, newValue in
+                    viewModel.setData(data: "Slider set to \(newValue)")
+                    viewModel.setProgressData(progressData: newValue)
                 }
-            ).onChange(of: viewModel.sliderState) { oldValue, newValue in
-                viewModel.setData(data: "Slider set to \(newValue)")
-                viewModel.setProgressData(progressData: newValue)
+                Spacer()
             }
+            .padding(.leading, horizontalPadding)
+            .padding(.trailing, horizontalPadding)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxHeight: .infinity)
-        
     }
 }
 
