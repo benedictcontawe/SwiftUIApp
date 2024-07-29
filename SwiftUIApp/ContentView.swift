@@ -10,16 +10,21 @@ import SwiftUI
 struct ContentView : View {
     let text : String
     let image : String
+    let index : Int
     var body: some View {
-        VStack {
-            Image(systemName: image)
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text(text)
+        NavigationStack {
+            VStack {
+                Image(systemName: image)
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                Text(text)
+            }
+            .navigationTitle(text)
         }
+        .tag(index)
     }
 }
 
 #Preview {
-    ContentView(text: "Hello World", image: "globe")
+    ContentView(text: "Hello World", image: "globe", index: 0)
 }

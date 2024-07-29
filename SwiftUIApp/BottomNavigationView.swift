@@ -8,18 +8,34 @@ import SwiftUI
 
 struct BottomNavigationView: View {
     @ObservedObject var viewModel : ViewModel = ViewModel()
+    @State private var selectedIndex: Int = 0
     var body: some View {
-        TabView {
-            List(Array(viewModel.models.enumerated()), id: \.element.id) { index, model in
-                ContentView(
-                    text: model.text,
-                    image: model.image
-                ).tabItem {
-                    Image(systemName: model.image)
-                    Text(model.text)
+        TabView (
+            selection: $selectedIndex,
+            content: {
+                ForEach(viewModel.models.indices, id: \.self) { index in
+                    let model = viewModel.models[index]
+                    ContentView(
+                        text: model.text,
+                        image: model.image,
+                        index: index
+                    )
+                    .tabItem {
+                        VStack {
+                            Image(systemName: model.image)
+                            Text(model.text)
+                        }
+                    }
+                    .tag(index)
                 }
             }
-        }
+        )
+        .onAppear(perform: {
+            UITabBar.appearance().unselectedItemTintColor = .systemBrown
+            UITabBarItem.appearance().badgeColor = .systemPink
+            UITabBar.appearance().backgroundColor = .systemGray4.withAlphaComponent(0.4)
+            UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.systemPink]
+        })
     }
 }
 
