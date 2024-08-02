@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ViewModel : ObservableObject {
+internal final class ViewModel : ObservableObject {
     @Published public var models : [TabModel]
     init() {
         models = [
