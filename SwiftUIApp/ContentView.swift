@@ -6,75 +6,64 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @ObservedObject var viewModel = ViewModel()
+    @ObservedObject var viewModel : ViewModel = ViewModel()
     var body: some View {
         GeometryReader { geometry in
-            let horizontalPadding = geometry.size.width * 0.05
-            VStack {
-                Spacer()
-                HStack {
-                    Text(viewModel.getData())
-                    ProgressView(value: viewModel.getProgressData(), total: 10)
+            ZStack {
+                List(Array(viewModel.getModels().enumerated()), id: \.element.id) { index, model in
+                    // Your row content here
+                    Text("\(index): \(model.name)")
                 }
-                Spacer()
-                Divider()
-                Spacer()
-                Button (
-                    action: {
-                        viewModel.setData(data: "Button was Clicked")
-                    }
-                ) {
-                    Text("Send Data")
-                }
-                Spacer()
-                Toggle("Toggle", isOn: $viewModel.toggleState).onChange(of: viewModel.toggleState) { oldValue, newValue in
-                    viewModel.setSwitchChecked(isChecked: newValue)
-                }
-                Spacer()
-                Picker(
-                    selection: $viewModel.pickerState,
-                    label: Text("Picker")
-                ) {
-                    Text("1").tag(1)
-                    Text("2").tag(2)
-                }.onChange(of: viewModel.pickerState) { oldValue, newValue in
-                    viewModel.setData(data: "Picker set to \(newValue)")
-                }.pickerStyle(.automatic)
-                Spacer()
-                Stepper(
-                    value: $viewModel.stepperState,
-                    in: 0...10
-                ) {
-                    Text("Stepper \(viewModel.stepperState)")
-                }.onChange(of: viewModel.stepperState) { oldValue, newValue in
-                    viewModel.setData(data: "Stepper set to \(newValue)")
-                    viewModel.setProgressData(progressData: Float(newValue))
-                }
-                Spacer()
-                Slider(
-                    value: $viewModel.sliderState,
-                    in: 0...10,
-                    step: 1,
-                    onEditingChanged: { data in
-                    
+                FloatingActionButtons (
+                    lead: geometry.size.width * 0.10,
+                    trail: geometry.size.width * 0.90,
+                    bottom: geometry.size.height * 0.95,
+                    addAction: {
+                        viewModel.showAlert.toggle()
+                        //viewModel.showActionSheet.toggle()
+                        //viewModel.showSheet.toggle()
                     },
-                    minimumValueLabel: Text("0"),
-                    maximumValueLabel: Text("10"),
-                    label: {
-                        Text("Slider")
+                    clearAction: {
+                        viewModel.clearModel()
                     }
-                ).onChange(of: viewModel.sliderState) { oldValue, newValue in
-                    viewModel.setData(data: "Slider set to \(newValue)")
-                    viewModel.setProgressData(progressData: newValue)
+                )
+            }.alert(
+                isPresented: $viewModel.showAlert,
+                content: {
+                    Alert(
+                        title: Text("Alert Title"),
+                        message: Text("Alert Message."),
+                        primaryButton: .default(Text("OK")),
+                        secondaryButton: .cancel()
+                    )
                 }
-                Spacer()
+            ).confirmationDialog("Confimation Dialog", isPresented: $viewModel.showActionSheet, titleVisibility: .visible) {
+                Button("Option 1") {
+                                    // Handle option 1
+                }
+                Button("Option 2") {
+                    // Handle option 2
+                }
+                Button("Cancel", role: .cancel) {
+                    
+                }
+            }.sheet(isPresented: $viewModel.showSheet) {
+                VStack {
+                    Text("Custom Sheet")
+                        .font(.headline)
+                    Button("Dismiss") {
+                        viewModel.showSheet = false
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
             }
-            .padding(.leading, horizontalPadding)
-            .padding(.trailing, horizontalPadding)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
 }

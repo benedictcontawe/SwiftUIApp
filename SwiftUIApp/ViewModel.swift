@@ -8,50 +8,55 @@
 import SwiftUI
 
 class ViewModel : ObservableObject {
-    @Published public var model : [CustomModel]
-    @Published private var data : String
-    @Published private var progressData : Float
-    @Published var toggleState : Bool = true
-    @Published var pickerState : Int = 0
-    @Published var stepperState : Int = 5
-    @Published var sliderState : Float = 5.0
-    
+    @Published private var models : [CustomModel]
+    @Published public var showAlert = false
+    @Published public var showActionSheet = false
+    @Published public var showSheet = false
     init() {
-        model = []
-        data = "Data"
-        progressData = 0.0
-    }
-    
-    func setData(data : String) {
-        self.data = data
-    }
-    
-    func getData() -> String {
-        return self.data
-    }
-    
-    func setProgressData(progressData : Float) {
-        self.progressData = progressData
-    }
-    
-    func getProgressData() -> Float {
-        return self.progressData
-    }
-    
-    func setSwitchChecked(isChecked : Bool) {
-        if isChecked {
-            setData(data: "Toggle is On")
-        } else {
-            setData(data: "Toggle is Off")
-        }
+        models = [
+            CustomModel(name: "AAA"),
+            CustomModel(name: "BBB"),
+            CustomModel(name: "CCC"),
+            CustomModel(name: "DDD"),
+            CustomModel(name: "EEE"),
+            CustomModel(name: "FFF"),
+            CustomModel(name: "GGG"),
+            CustomModel(name: "HHH"),
+            CustomModel(name: "III"),
+            CustomModel(name: "JJJ"),
+            CustomModel(name: "KKK"),
+            CustomModel(name: "LLL"),
+            CustomModel(name: "MMM"),
+            CustomModel(name: "NNN"),
+            CustomModel(name: "OOO"),
+            CustomModel(name: "PPP"),
+            CustomModel(name: "QQQ"),
+            CustomModel(name: "RRR"),
+            CustomModel(name: "SSS"),
+            CustomModel(name: "TTT"),
+            CustomModel(name: "UUU"),
+            CustomModel(name: "VVV"),
+            CustomModel(name: "WWW"),
+            CustomModel(name: "XXX"),
+            CustomModel(name: "YYY"),
+            CustomModel(name: "ZZZ")
+        ]
     }
     
     func shuffleModel() {
-        model.shuffle()
+        models.shuffle()
     }
     
-    func reverseOrder() {
-        model.reverse()
+    func reverseModel() {
+        models.reverse()
+    }
+    
+    func clearModel() {
+        models.removeAll()
+    }
+    
+    func getModels() -> [CustomModel] {
+        return models
     }
     
     deinit {

@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct CustomModel : Identifiable {
+struct CustomModel : Identifiable, CustomStringConvertible {
     let id : UUID = UUID()
     var name : String
+    var description: String {
+        return "CustomModel: name \(name)"
+    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC52C7A62C6787D800FA9CB4 /* FloatingActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */; };
 		DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */; };
 		DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */; };
 		DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32CA2C4E6B6100D6EA61 /* Item.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtons.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAppApp.swift; sourceTree = "<group>"; };
 		DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */,
 				DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */,
+				DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */,
 				DC5D32CA2C4E6B6100D6EA61 /* Item.swift */,
 				DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */,
 				DC5D32CE2C4E6B6300D6EA61 /* Preview Content */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */,
+				DC52C7A62C6787D800FA9CB4 /* FloatingActionButtons.swift in Sources */,
 				DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */,
 				DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */,
