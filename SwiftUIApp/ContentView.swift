@@ -16,10 +16,15 @@ struct ContentView: View {
                     CardCell(
                         index: index,
                         name: model.name,
-                        editAction: { index in
-                            //TODO: Edit Functionality
+                        cellAction: {
+                            viewModel.showActionSheet.toggle()
                         },
-                        deleteAction: { index in
+                        editAction: {
+                            viewModel.selectedIndex = index
+                            viewModel.editText = model.name
+                            viewModel.showEditSheet.toggle()
+                        },
+                        deleteAction: {
                             withAnimation(.linear) {
                                 viewModel.clearModel(index: index)
                             }
@@ -31,16 +36,15 @@ struct ContentView: View {
                     trail: geometry.size.width * 0.90,
                     bottom: geometry.size.height * 0.95,
                     addAction: {
-                        //viewModel.showActionSheet.toggle()
-                        viewModel.addText.removeAll()
-                        viewModel.showSheet.toggle()
+                        viewModel.addText?.removeAll()
+                        viewModel.showAddSheet.toggle()
                     },
                     clearAction: {
-                        viewModel.showAlert.toggle()
+                        viewModel.showClearAlert.toggle()
                     }
                 )
             }.alert(
-                isPresented: $viewModel.showAlert,
+                isPresented: $viewModel.showClearAlert,
                 content: {
                     Alert(
                         title: Text("Clear Prompt"),
@@ -54,26 +58,56 @@ struct ContentView: View {
                     )
                 }
             ).confirmationDialog("Confimation Dialog", isPresented: $viewModel.showActionSheet, titleVisibility: .visible) {
-                Button("Option 1") {
-                                    // Handle option 1
+                Button("Add New") {
+                
                 }
-                Button("Option 2") {
-                    // Handle option 2
+                Button("Edit") {
+                    
                 }
                 Button("Cancel", role: .cancel) {
                     
                 }
-            }.sheet(isPresented: $viewModel.showSheet) {
+            }.sheet(isPresented: $viewModel.showAddSheet) {
                 VStack {
-                    Text("Custom Sheet")
+                    Text("Add New")
                         .font(.headline)
-                    TextField("Enter your text", text: $viewModel.addText)
-                        .padding()
-                        .background(Color(.systemGray5))
-                        .cornerRadius(8)
+                    TextField(
+                        "Enter your text",
+                        text: Binding(
+                            get: { viewModel.addText ?? "" },
+                            set: { viewModel.addText = $0 }
+                        )
+                    )
+                    .padding()
+                    .background(Color(.systemGray5))
+                    .cornerRadius(8)
                     Button("Add") {
-                        viewModel.showSheet = false
+                        viewModel.showAddSheet = false
                         viewModel.addModel()
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+            }.sheet(isPresented: $viewModel.showEditSheet) {
+                VStack {
+                    Text("Edit Name")
+                        .font(.headline)
+                    TextField(
+                        "Enter your text",
+                        text: Binding(
+                            get: { viewModel.editText ?? "" },
+                            set: { viewModel.editText = $0 }
+                        )
+                    )
+                    .padding()
+                    .background(Color(.systemGray5))
+                    .cornerRadius(8)
+                    Button("Edit") {
+                        viewModel.showEditSheet = false
+                        viewModel.editModel()
                     }
                 }
                 .padding()

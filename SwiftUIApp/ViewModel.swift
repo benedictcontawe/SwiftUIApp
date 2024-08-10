@@ -8,12 +8,15 @@
 import SwiftUI
 
 class ViewModel : ObservableObject {
+    
     @Published private var models : [CustomModel]
-    @Published public var showAlert : Bool = false
+    @Published public var selectedIndex : Int?
+    @Published public var showClearAlert : Bool = false
     @Published public var showActionSheet : Bool = false
-    @Published public var showSheet : Bool = false
-    @Published public var addText : String = ""
-    @Published public var editText : String = ""
+    @Published public var showAddSheet : Bool = false
+    @Published public var showEditSheet : Bool = false
+    @Published public var addText : String?
+    @Published public var editText : String?
 
     init() {
         models = [
@@ -47,11 +50,23 @@ class ViewModel : ObservableObject {
     }
     
     func addModel() {
-        guard !addText.isEmpty else {
+        guard let text = addText, !text.isEmpty else {
             print("Add text is empty")
             return
         }
-        models.append(CustomModel(name: addText))
+        models.append(CustomModel(name: text))
+        addText = nil
+    }
+    
+    func editModel() {
+        guard let index = selectedIndex, index >= 0, index < models.count, let text = editText, !text.isEmpty else {
+            print("Invalid index, text is empty or out of bounds")
+            return
+        }
+        let updatedModel = CustomModel(name: text)
+        models[index] = updatedModel
+        selectedIndex = nil
+        editText = nil
     }
     
     func shuffleModel() {
