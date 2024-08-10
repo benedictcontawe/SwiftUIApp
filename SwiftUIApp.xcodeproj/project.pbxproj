@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC52C7A62C6787D800FA9CB4 /* FloatingActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */; };
+		DC52C7A82C679D6800FA9CB4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52C7A72C679D6800FA9CB4 /* CardCell.swift */; };
 		DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */; };
 		DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */; };
 		DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32CA2C4E6B6100D6EA61 /* Item.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtons.swift; sourceTree = "<group>"; };
+		DC52C7A72C679D6800FA9CB4 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAppApp.swift; sourceTree = "<group>"; };
 		DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC52C7A72C679D6800FA9CB4 /* CardCell.swift */,
 				DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC52C7A82C679D6800FA9CB4 /* CardCell.swift in Sources */,
 				DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */,
 				DC52C7A62C6787D800FA9CB4 /* FloatingActionButtons.swift in Sources */,
 				DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */,

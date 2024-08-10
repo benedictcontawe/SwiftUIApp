@@ -13,29 +13,43 @@ struct ContentView: View {
         GeometryReader { geometry in
             ZStack {
                 List(Array(viewModel.getModels().enumerated()), id: \.element.id) { index, model in
-                    // Your row content here
-                    Text("\(index): \(model.name)")
+                    CardCell(
+                        index: index,
+                        name: model.name,
+                        editAction: { index in
+                            //TODO: Edit Functionality
+                        },
+                        deleteAction: { index in
+                            withAnimation(.linear) {
+                                viewModel.clearModel(index: index)
+                            }
+                        }
+                    )
                 }
                 FloatingActionButtons (
                     lead: geometry.size.width * 0.10,
                     trail: geometry.size.width * 0.90,
                     bottom: geometry.size.height * 0.95,
                     addAction: {
-                        viewModel.showAlert.toggle()
                         //viewModel.showActionSheet.toggle()
-                        //viewModel.showSheet.toggle()
+                        viewModel.addText.removeAll()
+                        viewModel.showSheet.toggle()
                     },
                     clearAction: {
-                        viewModel.clearModel()
+                        viewModel.showAlert.toggle()
                     }
                 )
             }.alert(
                 isPresented: $viewModel.showAlert,
                 content: {
                     Alert(
-                        title: Text("Alert Title"),
-                        message: Text("Alert Message."),
-                        primaryButton: .default(Text("OK")),
+                        title: Text("Clear Prompt"),
+                        message: Text("Are you sure you want to Clear All."),
+                        primaryButton: .default(Text("OK"), action: {
+                            withAnimation(.bouncy) {
+                                viewModel.clearModel()
+                            }
+                        }),
                         secondaryButton: .cancel()
                     )
                 }
@@ -53,8 +67,13 @@ struct ContentView: View {
                 VStack {
                     Text("Custom Sheet")
                         .font(.headline)
-                    Button("Dismiss") {
+                    TextField("Enter your text", text: $viewModel.addText)
+                        .padding()
+                        .background(Color(.systemGray5))
+                        .cornerRadius(8)
+                    Button("Add") {
                         viewModel.showSheet = false
+                        viewModel.addModel()
                     }
                 }
                 .padding()

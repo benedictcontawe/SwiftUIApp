@@ -9,9 +9,12 @@ import SwiftUI
 
 class ViewModel : ObservableObject {
     @Published private var models : [CustomModel]
-    @Published public var showAlert = false
-    @Published public var showActionSheet = false
-    @Published public var showSheet = false
+    @Published public var showAlert : Bool = false
+    @Published public var showActionSheet : Bool = false
+    @Published public var showSheet : Bool = false
+    @Published public var addText : String = ""
+    @Published public var editText : String = ""
+
     init() {
         models = [
             CustomModel(name: "AAA"),
@@ -43,12 +46,28 @@ class ViewModel : ObservableObject {
         ]
     }
     
+    func addModel() {
+        guard !addText.isEmpty else {
+            print("Add text is empty")
+            return
+        }
+        models.append(CustomModel(name: addText))
+    }
+    
     func shuffleModel() {
         models.shuffle()
     }
     
     func reverseModel() {
         models.reverse()
+    }
+    
+    func clearModel(index: Int?) {
+        guard let index = index, index >= 0, index < models.count else {
+            print("Invalid index")
+            return
+        }
+        models.remove(at: index)
     }
     
     func clearModel() {
