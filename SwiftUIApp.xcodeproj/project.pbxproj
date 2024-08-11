@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC27FDFD2C568E7300611EB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC27FDFC2C568E7300611EB5 /* ContentView.swift */; };
 		DC5564C92C50FB6D00C51CEF /* SideMenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCell.swift */; };
-		DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */; };
+		DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */; };
 		DC5D32C92C4E6B6100D6EA61 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* NavigationView.swift */; };
 		DC5D32CD2C4E6B6300D6EA61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */; };
 		DC5D32D02C4E6B6300D6EA61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CF2C4E6B6300D6EA61 /* Preview Assets.xcassets */; };
@@ -24,7 +24,7 @@
 		DC27FDFC2C568E7300611EB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderCell.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAppApp.swift; sourceTree = "<group>"; };
+		DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIApp.swift; sourceTree = "<group>"; };
 		DC5D32C82C4E6B6100D6EA61 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC5D32CF2C4E6B6300D6EA61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				DC5564C82C50FB6D00C51CEF /* SideMenuHeaderCell.swift */,
-				DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */,
+				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
 				DC5DA2EF2C4FAB1200F9E88F /* DrawerModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
 				DC5D32C82C4E6B6100D6EA61 /* NavigationView.swift */,
@@ -166,7 +166,7 @@
 				DC27FDFD2C568E7300611EB5 /* ContentView.swift in Sources */,
 				DC5564C92C50FB6D00C51CEF /* SideMenuHeaderCell.swift in Sources */,
 				DC5DA2EE2C4FA73000F9E88F /* SideMenuCell.swift in Sources */,
-				DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */,
+				DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
