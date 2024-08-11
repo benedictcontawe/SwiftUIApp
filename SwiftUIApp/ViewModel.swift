@@ -69,6 +69,14 @@ class ViewModel : ObservableObject {
         editText = nil
     }
     
+    func setEditText() {
+        guard let index = selectedIndex, index >= 0, index < models.count else {
+            print("Invalid index")
+            return
+        }
+        editText = models[index].name
+    }
+    
     func shuffleModel() {
         models.shuffle()
     }

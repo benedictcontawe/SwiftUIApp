@@ -17,6 +17,7 @@ struct ContentView: View {
                         index: index,
                         name: model.name,
                         cellAction: {
+                            viewModel.selectedIndex = index
                             viewModel.showActionSheet.toggle()
                         },
                         editAction: {
@@ -59,10 +60,12 @@ struct ContentView: View {
                 }
             ).confirmationDialog("Confimation Dialog", isPresented: $viewModel.showActionSheet, titleVisibility: .visible) {
                 Button("Add New") {
-                
+                    viewModel.addText?.removeAll()
+                    viewModel.showAddSheet.toggle()
                 }
                 Button("Edit") {
-                    
+                    viewModel.setEditText()
+                    viewModel.showEditSheet.toggle()
                 }
                 Button("Cancel", role: .cancel) {
                     
