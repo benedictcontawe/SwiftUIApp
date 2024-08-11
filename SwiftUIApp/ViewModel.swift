@@ -5,11 +5,13 @@
 //  Created by Benedict Contawe on 7/22/24.
 //
 
+import SwiftData
 import SwiftUI
 
 class ViewModel : ObservableObject {
     
-    @Published private var models : [CustomModel]
+    private let dataSource: SwiftDataService
+    @Published private var models : [CustomModel] = []
     @Published public var selectedIndex : Int?
     @Published public var showClearAlert : Bool = false
     @Published public var showActionSheet : Bool = false
@@ -18,35 +20,9 @@ class ViewModel : ObservableObject {
     @Published public var addText : String?
     @Published public var editText : String?
 
-    init() {
-        models = [
-            CustomModel(name: "AAA"),
-            CustomModel(name: "BBB"),
-            CustomModel(name: "CCC"),
-            CustomModel(name: "DDD"),
-            CustomModel(name: "EEE"),
-            CustomModel(name: "FFF"),
-            CustomModel(name: "GGG"),
-            CustomModel(name: "HHH"),
-            CustomModel(name: "III"),
-            CustomModel(name: "JJJ"),
-            CustomModel(name: "KKK"),
-            CustomModel(name: "LLL"),
-            CustomModel(name: "MMM"),
-            CustomModel(name: "NNN"),
-            CustomModel(name: "OOO"),
-            CustomModel(name: "PPP"),
-            CustomModel(name: "QQQ"),
-            CustomModel(name: "RRR"),
-            CustomModel(name: "SSS"),
-            CustomModel(name: "TTT"),
-            CustomModel(name: "UUU"),
-            CustomModel(name: "VVV"),
-            CustomModel(name: "WWW"),
-            CustomModel(name: "XXX"),
-            CustomModel(name: "YYY"),
-            CustomModel(name: "ZZZ")
-        ]
+    init(dataSource: SwiftDataService) {
+        self.dataSource = dataSource
+        models = dataSource.fetchModels()
     }
     
     func addModel() {
@@ -54,8 +30,10 @@ class ViewModel : ObservableObject {
             print("Add text is empty")
             return
         }
-        models.append(CustomModel(name: text))
+        let newModel = CustomModel(name: text)
+        dataSource.addModel(newModel)
         addText = nil
+        models = dataSource.fetchModels()
     }
     
     func editModel() {
@@ -63,8 +41,8 @@ class ViewModel : ObservableObject {
             print("Invalid index, text is empty or out of bounds")
             return
         }
-        let updatedModel = CustomModel(name: text)
-        models[index] = updatedModel
+        models[index].name = text
+        dataSource.save()
         selectedIndex = nil
         editText = nil
     }
@@ -75,14 +53,8 @@ class ViewModel : ObservableObject {
             return
         }
         editText = models[index].name
-    }
-    
-    func shuffleModel() {
-        models.shuffle()
-    }
-    
-    func reverseModel() {
-        models.reverse()
+        dataSource.save()
+        models = dataSource.fetchModels()
     }
     
     func clearModel(index: Int?) {
@@ -90,14 +62,17 @@ class ViewModel : ObservableObject {
             print("Invalid index")
             return
         }
-        models.remove(at: index)
+        dataSource.deleteModel(models[index])
+        models = dataSource.fetchModels()
     }
     
     func clearModel() {
-        models.removeAll()
+        dataSource.deleteModels()
+        models = dataSource.fetchModels()
     }
     
     func getModels() -> [CustomModel] {
+        print("getModels \(models.count)")
         return models
     }
     

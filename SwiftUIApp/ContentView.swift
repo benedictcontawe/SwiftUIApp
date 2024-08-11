@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel : ViewModel = ViewModel()
+    @ObservedObject var viewModel : ViewModel = ViewModel(dataSource: .shared)
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -125,5 +125,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().modelContainer(for: Item.self, inMemory: true)
+    ContentView().modelContainer(for: CustomModel.self, inMemory: true)
 }
