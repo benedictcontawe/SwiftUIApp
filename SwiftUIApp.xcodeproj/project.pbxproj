@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */; };
+		DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */; };
 		DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */; };
 		DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32CA2C4E6B6100D6EA61 /* Item.swift */; };
 		DC5D32CD2C4E6B6300D6EA61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */; };
@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAppApp.swift; sourceTree = "<group>"; };
+		DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIApp.swift; sourceTree = "<group>"; };
 		DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC5D32CA2C4E6B6100D6EA61 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			children = (
 				DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
-				DC5D32C62C4E6B6100D6EA61 /* SwiftUIAppApp.swift */,
+				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
 				DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */,
 				DC5D32CA2C4E6B6100D6EA61 /* Item.swift */,
 				DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */,
@@ -150,7 +150,7 @@
 				DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */,
 				DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */,
-				DC5D32C72C4E6B6100D6EA61 /* SwiftUIAppApp.swift in Sources */,
+				DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
