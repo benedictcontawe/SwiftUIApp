@@ -25,7 +25,7 @@ struct SwiftUIApp : App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationView()
+            NavigationView().environmentObject(ViewModel())
         }
         .modelContainer(sharedModelContainer)
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct NavigationView : View {
-    @ObservedObject var viewModel : ViewModel = ViewModel()
+    @EnvironmentObject var viewModel : ViewModel
     var body : some View {
         NavigationStack {
             ZStack {
@@ -29,9 +29,7 @@ struct NavigationView : View {
                 */
                 ContentView(text: viewModel.selectedPage)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                SideMenuView(
-                    viewModel: viewModel
-                )
+                SideMenuView()
             }
             .toolbar(viewModel.showMenu ? .hidden : .visible, for: .navigationBar)
             .navigationTitle("Home")

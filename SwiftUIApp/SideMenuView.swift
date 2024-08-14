@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SideMenuView: View {
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel : ViewModel
     @GestureState private var dragOffset: CGSize = CGSize.zero
     var body: some View {
         ZStack {
@@ -72,7 +72,5 @@ struct SideMenuView: View {
 }
 
 #Preview {
-    SideMenuView(
-        viewModel: ViewModel()
-    )
+    SideMenuView()
 }
