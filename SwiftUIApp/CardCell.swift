@@ -19,7 +19,16 @@ struct CardCell : View {
             action: {/*cellAction()*/},
             label:  {
                 HStack() {
-                    AsyncImage(url: URL(string: image ?? "")) { phase in
+                    AsyncImage(
+                        url: URL(string: image ?? ""),
+                        transaction: Transaction(
+                            animation: .spring (
+                                response: 0.5,
+                                dampingFraction: 0.65,
+                                blendDuration: 0.025
+                            )
+                        )
+                    ) { phase in
                         switch phase {
                         case .success(let image):
                             image
