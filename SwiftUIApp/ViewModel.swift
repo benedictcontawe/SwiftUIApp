@@ -7,51 +7,48 @@
 
 import SwiftUI
 
-class ViewModel : ObservableObject {
-    @Published public var model : [CustomModel]
-    @Published private var data : String
-    @Published private var progressData : Float
-    @Published var toggleState : Bool = true
-    @Published var pickerState : Int = 0
-    @Published var stepperState : Int = 5
-    @Published var sliderState : Float = 5.0
+public class ViewModel : ObservableObject {
+    @Published public var models : [NasaResponseModel]
+    @Published public var isLoading = false
+    @Published public var errorMessage: String?
+    private let networkManager = NetworkManager()
     
     init() {
-        model = []
-        data = "Data"
-        progressData = 0.0
-    }
-    
-    func setData(data : String) {
-        self.data = data
-    }
-    
-    func getData() -> String {
-        return self.data
-    }
-    
-    func setProgressData(progressData : Float) {
-        self.progressData = progressData
-    }
-    
-    func getProgressData() -> Float {
-        return self.progressData
-    }
-    
-    func setSwitchChecked(isChecked : Bool) {
-        if isChecked {
-            setData(data: "Toggle is On")
-        } else {
-            setData(data: "Toggle is Off")
+        self.models = []
+        Task {
+            await requestAPOD()
         }
     }
     
-    func shuffleModel() {
-        model.shuffle()
+    init(models: [NasaResponseModel], isLoading: Bool = false, errorMessage: String? = nil) {
+        self.models = models
+        self.isLoading = isLoading
+        self.errorMessage = errorMessage
+        Task {
+            await requestAPOD()
+        }
     }
     
-    func reverseOrder() {
-        model.reverse()
+    public func requestAPOD() async {
+        isLoading = true
+        let apiKey = "lebNOALEyzgIAKKggQws8YGcWVLDK72R0l2Twryx"
+        let request : NasaRequestModel = NasaRequestModel (
+            key: apiKey,
+            count: 5
+        )
+        networkManager.getApod(request: request) { result in
+          DispatchQueue.main.async {
+            self.isLoading = false
+            switch result {
+            case .success(let response):
+                withAnimation(.bouncy) {
+                    self.models.insert(contentsOf: response, at: 0)
+                }
+            case .failure(let error):
+              self.errorMessage = error.localizedDescription
+            }
+          }
+        }
     }
     
     deinit {

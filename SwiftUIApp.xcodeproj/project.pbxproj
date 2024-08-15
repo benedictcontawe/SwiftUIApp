@@ -7,24 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4319F2333A37C925624C2B02 /* Pods_SwiftUIApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */; };
+		DC1C12642C6DE2960060A050 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12632C6DE2960060A050 /* NetworkManager.swift */; };
+		DC1C12662C6DE95C0060A050 /* NasaResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */; };
+		DC1C12682C6DEC620060A050 /* NasaRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */; };
+		DC1C126A2C6DF6DE0060A050 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12692C6DF6DE0060A050 /* CardCell.swift */; };
 		DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */; };
 		DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */; };
-		DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32CA2C4E6B6100D6EA61 /* Item.swift */; };
 		DC5D32CD2C4E6B6300D6EA61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */; };
 		DC5D32D02C4E6B6300D6EA61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CF2C4E6B6300D6EA61 /* Preview Assets.xcassets */; };
 		DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */; };
-		DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AF0D2F83678A37C8518C3ED /* Pods-SwiftUIApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp.release.xcconfig"; sourceTree = "<group>"; };
+		A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftUIApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2260BC3ADF4AAED9295BEF7 /* Pods-SwiftUIApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DC1C12632C6DE2960060A050 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaResponseModel.swift; sourceTree = "<group>"; };
+		DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaRequestModel.swift; sourceTree = "<group>"; };
+		DC1C12692C6DF6DE0060A050 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIApp.swift; sourceTree = "<group>"; };
 		DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DC5D32CA2C4E6B6100D6EA61 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC5D32CF2C4E6B6300D6EA61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +40,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4319F2333A37C925624C2B02 /* Pods_SwiftUIApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35FB2D6C900DB0286F642232 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2260BC3ADF4AAED9295BEF7 /* Pods-SwiftUIApp.debug.xcconfig */,
+				1AF0D2F83678A37C8518C3ED /* Pods-SwiftUIApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D1387757955A1034DB7666C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DC5D32BA2C4E6B6100D6EA61 = {
 			isa = PBXGroup;
 			children = (
 				DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */,
 				DC5D32C42C4E6B6100D6EA61 /* Products */,
+				35FB2D6C900DB0286F642232 /* Pods */,
+				D1387757955A1034DB7666C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,11 +85,13 @@
 		DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
-				DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */,
-				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
+				DC1C12632C6DE2960060A050 /* NetworkManager.swift */,
+				DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */,
+				DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */,
+				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
 				DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */,
-				DC5D32CA2C4E6B6100D6EA61 /* Item.swift */,
+				DC1C12692C6DF6DE0060A050 /* CardCell.swift */,
 				DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */,
 				DC5D32CE2C4E6B6300D6EA61 /* Preview Content */,
 			);
@@ -83,9 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC5D32D32C4E6B6300D6EA61 /* Build configuration list for PBXNativeTarget "SwiftUIApp" */;
 			buildPhases = (
+				DD3353B228E2A9A62EB0C27C /* [CP] Check Pods Manifest.lock */,
 				DC5D32BF2C4E6B6100D6EA61 /* Sources */,
 				DC5D32C02C4E6B6100D6EA61 /* Frameworks */,
 				DC5D32C12C4E6B6100D6EA61 /* Resources */,
+				1ACBF94CFC7EFE0127653365 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,16 +173,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1ACBF94CFC7EFE0127653365 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD3353B228E2A9A62EB0C27C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftUIApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DC5D32BF2C4E6B6100D6EA61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1C12642C6DE2960060A050 /* NetworkManager.swift in Sources */,
 				DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */,
-				DC5D32CB2C4E6B6100D6EA61 /* Item.swift in Sources */,
-				DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */,
+				DC1C12662C6DE95C0060A050 /* NasaResponseModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */,
+				DC1C12682C6DEC620060A050 /* NasaRequestModel.swift in Sources */,
 				DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */,
+				DC1C126A2C6DF6DE0060A050 /* CardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +270,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -257,7 +333,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -278,6 +354,7 @@
 		};
 		DC5D32D42C4E6B6300D6EA61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2260BC3ADF4AAED9295BEF7 /* Pods-SwiftUIApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -306,6 +383,7 @@
 		};
 		DC5D32D52C4E6B6300D6EA61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AF0D2F83678A37C8518C3ED /* Pods-SwiftUIApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
