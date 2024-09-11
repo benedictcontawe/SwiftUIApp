@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isPasswordHidden: Bool = true
+    @ObservedObject var viewModel : MainViewModel = MainViewModel()
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {

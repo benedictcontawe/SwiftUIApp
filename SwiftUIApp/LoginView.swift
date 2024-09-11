@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isPasswordHidden: Bool = true
-    @State private var path = NavigationPath()
+    @ObservedObject var viewModel : LoginViewModel = LoginViewModel()
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack() {
             GeometryReader { geometry in
                 ZStack {
                     Color.gray.edgesIgnoringSafeArea(.all)
@@ -26,7 +23,7 @@ struct LoginView: View {
                         HStack(alignment: .top) {
                             Image(systemName: "envelope")
                                 .foregroundColor(.gray)
-                            TextField("Email", text: $email)
+                            TextField("Email", text: $viewModel.email)
                         }
                         .padding()
                         .background(Color.white)
@@ -35,25 +32,26 @@ struct LoginView: View {
                             HStack(alignment: .top) {
                                 Image(systemName: "lock.fill")
                                     .foregroundColor(.gray)
-                                if isPasswordHidden {
-                                    SecureField("Password", text: $password)
+                                if viewModel.isPasswordHidden {
+                                    SecureField("Password", text: $viewModel.password)
                                 } else {
-                                    TextField("Password", text: $password)
+                                    TextField("Password", text: $viewModel.password)
                                 }
                             }
                             .padding()
                             .background(Color.white)
                             .cornerRadius(10)
                             Button(action: {
-                                isPasswordHidden.toggle()
+                                viewModel.isPasswordHidden.toggle()
                             }) {
-                                Image(systemName: isPasswordHidden ? "eye" : "eye.slash")
+                                Image(systemName: viewModel.isPasswordHidden ? "eye" : "eye.slash")
                                     .foregroundColor(.gray)
                                     .padding(.trailing, 10)
                             }
                         }
                         Button(action: {
                             print("Login tapped")
+                            viewModel.onCheckCredential()
                         }) {
                             Text("Login")
                                 .padding()
@@ -62,6 +60,7 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
+                        NavigationLink(destination: MainView(), isActive: $viewModel.isLoggedIn) { }
                         NavigationLink(destination: RegisterView()) {
                             Text("Go to Register")
                                 .padding()

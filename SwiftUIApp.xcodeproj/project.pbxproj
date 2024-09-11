@@ -14,6 +14,9 @@
 		DC24E2D42C916B0900CA74FC /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24E2D32C916B0900CA74FC /* AppBar.swift */; };
 		DC24E2D82C916C1800CA74FC /* CustomButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24E2D72C916C1800CA74FC /* CustomButtonWidget.swift */; };
 		DC24E2DA2C916E4F00CA74FC /* ScreenNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24E2D92C916E4F00CA74FC /* ScreenNavigationView.swift */; };
+		DC24E2DC2C91F63000CA74FC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24E2DB2C91F63000CA74FC /* LoginViewModel.swift */; };
+		DC24E2DE2C91F8F500CA74FC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24E2DD2C91F8F500CA74FC /* RegisterViewModel.swift */; };
+		DC24E2E02C91FF0F00CA74FC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24E2DF2C91FF0F00CA74FC /* MainViewModel.swift */; };
 		DC52C7A62C6787D800FA9CB4 /* FloatingActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */; };
 		DC52C7A82C679D6800FA9CB4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52C7A72C679D6800FA9CB4 /* CardCell.swift */; };
 		DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */; };
@@ -32,6 +35,9 @@
 		DC24E2D32C916B0900CA74FC /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
 		DC24E2D72C916C1800CA74FC /* CustomButtonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonWidget.swift; sourceTree = "<group>"; };
 		DC24E2D92C916E4F00CA74FC /* ScreenNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenNavigationView.swift; sourceTree = "<group>"; };
+		DC24E2DB2C91F63000CA74FC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DC24E2DD2C91F8F500CA74FC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		DC24E2DF2C91FF0F00CA74FC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtons.swift; sourceTree = "<group>"; };
 		DC52C7A72C679D6800FA9CB4 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +63,6 @@
 		DC5D32BA2C4E6B6100D6EA61 = {
 			isa = PBXGroup;
 			children = (
-				DC24E2D32C916B0900CA74FC /* AppBar.swift */,
 				DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */,
 				DC5D32C42C4E6B6100D6EA61 /* Products */,
 			);
@@ -74,18 +79,22 @@
 		DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC24E2D32C916B0900CA74FC /* AppBar.swift */,
 				DC52C7A72C679D6800FA9CB4 /* CardCell.swift */,
-				DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */,
-				DC5D32D62C4E9D7000D6EA61 /* ObjectViewModel.swift */,
-				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
-				DC5D32C82C4E6B6100D6EA61 /* ObjectView.swift */,
-				DC24E2CD2C91648D00CA74FC /* RegisterView.swift */,
-				DC24E2CF2C91656900CA74FC /* MainView.swift */,
 				DC24E2D72C916C1800CA74FC /* CustomButtonWidget.swift */,
-				DC24E2D12C916A1400CA74FC /* PrimitiveView.swift */,
-				DC24E2CB2C9156A400CA74FC /* LoginView.swift */,
-				DC24E2D92C916E4F00CA74FC /* ScreenNavigationView.swift */,
+				DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */,
 				DC52C7A52C6787D800FA9CB4 /* FloatingActionButtons.swift */,
+				DC24E2CB2C9156A400CA74FC /* LoginView.swift */,
+				DC24E2DB2C91F63000CA74FC /* LoginViewModel.swift */,
+				DC24E2CF2C91656900CA74FC /* MainView.swift */,
+				DC24E2DF2C91FF0F00CA74FC /* MainViewModel.swift */,
+				DC5D32C82C4E6B6100D6EA61 /* ObjectView.swift */,
+				DC5D32D62C4E9D7000D6EA61 /* ObjectViewModel.swift */,
+				DC24E2D12C916A1400CA74FC /* PrimitiveView.swift */,
+				DC24E2CD2C91648D00CA74FC /* RegisterView.swift */,
+				DC24E2DD2C91F8F500CA74FC /* RegisterViewModel.swift */,
+				DC24E2D92C916E4F00CA74FC /* ScreenNavigationView.swift */,
+				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
 				DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */,
 				DC5D32CE2C4E6B6300D6EA61 /* Preview Content */,
 			);
@@ -171,11 +180,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC24E2CE2C91648D00CA74FC /* RegisterView.swift in Sources */,
+				DC24E2DE2C91F8F500CA74FC /* RegisterViewModel.swift in Sources */,
 				DC24E2D42C916B0900CA74FC /* AppBar.swift in Sources */,
 				DC52C7A82C679D6800FA9CB4 /* CardCell.swift in Sources */,
 				DC5D32C92C4E6B6100D6EA61 /* ObjectView.swift in Sources */,
 				DC24E2D02C91656900CA74FC /* MainView.swift in Sources */,
 				DC24E2D82C916C1800CA74FC /* CustomButtonWidget.swift in Sources */,
+				DC24E2DC2C91F63000CA74FC /* LoginViewModel.swift in Sources */,
 				DC52C7A62C6787D800FA9CB4 /* FloatingActionButtons.swift in Sources */,
 				DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ObjectViewModel.swift in Sources */,
@@ -183,6 +194,7 @@
 				DC24E2D22C916A1500CA74FC /* PrimitiveView.swift in Sources */,
 				DC24E2CC2C9156A400CA74FC /* LoginView.swift in Sources */,
 				DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */,
+				DC24E2E02C91FF0F00CA74FC /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
