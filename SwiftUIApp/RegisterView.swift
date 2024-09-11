@@ -11,6 +11,7 @@ struct RegisterView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isPasswordHidden: Bool = true
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -69,6 +70,7 @@ struct RegisterView: View {
                     }
                     Button(action: {
                         print("Go to Login tapped")
+                        dismiss()
                     }) {
                         Text("Go to Login")
                             .padding()
