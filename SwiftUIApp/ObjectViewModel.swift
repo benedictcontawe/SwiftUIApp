@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ViewModel : ObservableObject {
+class ObjectViewModel : ObservableObject {
     
     @Published private var models : [CustomModel]
     @Published public var selectedIndex : Int?
