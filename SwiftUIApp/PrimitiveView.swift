@@ -15,8 +15,6 @@ struct PrimitiveView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                AppBar()
-                Spacer()
                 HStack {
                     Toggle(isOn: $booleanValue) {
                         Text("Boolean Value:")

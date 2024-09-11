@@ -14,16 +14,18 @@ struct MainView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {
-                AppBar()
                 Spacer()
                 HStack(alignment: .center,spacing: CGFloat(geometry.size.width * 0.025)) {
                     CustomButtonWidget(text: "Primitive") {
                         print("Go to Primitive tapped")
                     }
+                    .frame(maxWidth: .infinity)
                     CustomButtonWidget(text: "Object") {
                         print("Go to Object tapped")
                     }
+                    .frame(maxWidth: .infinity)
                 }
+                .padding(.horizontal)
                 Spacer()
             }
             .padding(.top, geometry.size.height * 0.05)

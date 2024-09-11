@@ -25,7 +25,7 @@ struct SwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ScreenNavigationView()
         }
         .modelContainer(sharedModelContainer)
     }
