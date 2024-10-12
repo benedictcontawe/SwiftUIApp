@@ -7,9 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
 
 @main
 struct SwiftUIApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             
