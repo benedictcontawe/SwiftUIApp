@@ -14,62 +14,57 @@ struct LoginView: View {
             GeometryReader { geometry in
                 ZStack {
                     Color.gray.edgesIgnoringSafeArea(.all)
-                    VStack(spacing: CGFloat(geometry.size.height * 0.025)) {
+                    VStack(spacing: CGFloat(geometry.size.height * 0.025), content: {
                         Image(systemName: "swift")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .frame(width: geometry.size.width * 0.4)
                             .foregroundColor(.orange)
-                        HStack(alignment: .top) {
+                        HStack(alignment: .top, content: {
                             Image(systemName: "envelope")
                                 .foregroundColor(.gray)
-                            TextField("Email", text: $viewModel.email)
-                        }
+                            TextField("Email", text: $viewModel.email).autocapitalization(.none)
+                        })
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)
-                        ZStack(alignment: .trailing) {
-                            HStack(alignment: .top) {
+                        ZStack(alignment: .trailing, content: {
+                            HStack(alignment: .top, content: {
                                 Image(systemName: "lock.fill")
                                     .foregroundColor(.gray)
                                 if viewModel.isPasswordHidden {
-                                    SecureField("Password", text: $viewModel.password)
+                                    SecureField("Password", text: $viewModel.password).autocapitalization(.none)
                                 } else {
-                                    TextField("Password", text: $viewModel.password)
+                                    TextField("Password", text: $viewModel.password).autocapitalization(.none)
                                 }
-                            }
+                            })
                             .padding()
                             .background(Color.white)
                             .cornerRadius(10)
-                            Button(action: {
-                                viewModel.isPasswordHidden.toggle()
-                            }) {
+                            Button(action: { viewModel.isPasswordHidden.toggle() }, label: {
                                 Image(systemName: viewModel.isPasswordHidden ? "eye" : "eye.slash")
                                     .foregroundColor(.gray)
                                     .padding(.trailing, 10)
-                            }
-                        }
-                        Button(action: {
-                            print("Login tapped")
-                            viewModel.onCheckCredential()
-                        }) {
+                            })
+                        })
+                        Button(action: { viewModel.onCheckCredential() }, label: {
                             Text("Login")
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .background(Color.blue)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
-                        }
-                        NavigationLink(destination: MainView(), isActive: $viewModel.isLoggedIn) { }
-                        NavigationLink(destination: RegisterView()) {
+                        })
+                        .navigationDestination(isPresented: $viewModel.isLoggedIn, destination: { MainView().navigationBarBackButtonHidden(true) })
+                        NavigationLink(destination: RegisterView(), label: {
                             Text("Go to Register")
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .background(Color.green)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
-                        }
-                    }
+                        })
+                    })
                     .padding(.leading, geometry.size.width * 0.05)
                     .padding(.trailing, geometry.size.width * 0.05)
                 }

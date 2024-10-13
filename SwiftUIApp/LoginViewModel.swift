@@ -6,19 +6,26 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 class LoginViewModel : ObservableObject {
     @Published public var email: String = ""
     @Published public var password: String = ""
     @Published public var isPasswordHidden: Bool = true
     @Published var isLoggedIn: Bool = false
-    
-    public func onCheckCredential() { //TODO: Firebase Authentication Login
-        let validCredentials = true
-        if validCredentials {
-            isLoggedIn = true
-        } else {
-            print("Invalid credentials")
+    private let firebaseAuth = Auth.auth()
+
+    public func onCheckCredential() {
+        DispatchQueue.global().async {
+            print("LoginViewModel onCheckCredential \(self.email) \(self.password)")
+            self.firebaseAuth.signIn(withEmail: self.email, password: self.password) { [weak self] authResult, error in
+                guard let strongSelf = self else { return }
+                if let error = error {
+                    print("Authentication error: \(error.localizedDescription)")
+                } else {
+                    strongSelf.isLoggedIn = true
+                }
+            }
         }
     }
 }
