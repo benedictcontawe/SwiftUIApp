@@ -56,7 +56,7 @@ struct LoginView: View {
                                 .cornerRadius(10)
                         })
                         .navigationDestination(isPresented: $viewModel.isLoggedIn, destination: { MainView().navigationBarBackButtonHidden(true) })
-                        NavigationLink(destination: RegisterView(), label: {
+                        NavigationLink(destination: RegisterView().navigationBarBackButtonHidden(false), label: {
                             Text("Go to Register")
                                 .padding()
                                 .frame(maxWidth: .infinity)

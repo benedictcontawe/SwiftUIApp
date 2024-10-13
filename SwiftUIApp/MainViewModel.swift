@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class MainViewModel : ObservableObject {
+    private let firebaseAuth = Auth.auth()
     func onLaunchPrimitive() {
         debugPrint("MainController onLaunchPrimitive");
         //TODO: Redirect to PrimitiveView
@@ -16,5 +18,15 @@ class MainViewModel : ObservableObject {
     func onLaunchObject() {
         debugPrint("MainController onLaunchObject");
         //TODO: Redirect to ObjectView
+    }
+    
+    func onSignOut() {
+        do {
+            debugPrint("MainController onSignOut");
+            try firebaseAuth.signOut()
+            //TODO: Redirect to LoginView
+        } catch {
+            print("MainViewModel onSignOut catch error: \(error.localizedDescription)")
+        }
     }
 }
