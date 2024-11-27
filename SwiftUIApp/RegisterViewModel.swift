@@ -15,7 +15,7 @@ class RegisterViewModel : ObservableObject {
     @Published public var isRegistered: Bool = false
     private let firebaseAuth = Auth.auth()
     
-    public func onRegisterCredential() { //TODO: Firebase Authentication Registration
+    public func onRegisterCredential() {
         DispatchQueue.global().async {
             print("RegisterViewModel onRegisterCredential \(self.email) \(self.password)")
             Auth.auth().createUser(withEmail: self.email, password: self.password) { [weak self] authResult, error in
