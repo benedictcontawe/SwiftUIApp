@@ -8,65 +8,64 @@
 import SwiftUI
 
 struct PrimitiveView: View {
-    @State private var booleanValue: Bool = false
-    @State private var stringValue: String = ""
-    @State private var integerValue: String = ""
-    @State private var doubleValue: String = ""
+    @ObservedObject var viewModel : PrimitiveViewModel = PrimitiveViewModel()
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 HStack {
-                    Toggle(isOn: $booleanValue) {
-                        Text("Boolean Value:")
+                    Toggle(isOn: $viewModel.toggleValue) {
+                        Text("Boolean Value: \(viewModel.getToggle())")
                     }
                     Spacer()
                     CustomButtonWidget(text: "Update") {
-                        print("Update Boolean tapped")
+                        viewModel.onUpdateBoolean()
                     }
                     Spacer()
-                    Text("Boolean Value")
+                    Text("\(viewModel.getBoolean())")
                 }
                 Spacer()
                 HStack {
-                    TextField("Enter String Value", text: $stringValue)
+                    TextField("Enter String Value", text: $viewModel.stringTextValue)
                       .textFieldStyle(.roundedBorder)
                       .keyboardType(.default)
                       .disableAutocorrection(true)
                     Spacer()
                     CustomButtonWidget(text: "Update") {
-                        print("Update String tapped")
+                        viewModel.onUpdateString()
                     }
                     Spacer()
-                    Text("String Value")
+                    Text("\(viewModel.stringValue)")
                 }
                 Spacer()
                 HStack {
-                    TextField("Enter Integer Value", text: $integerValue)
+                    TextField("Enter Integer Value", text: viewModel.integerTextValueBinding)
                       .textFieldStyle(.roundedBorder)
                       .keyboardType(.numberPad)
                       .disableAutocorrection(true)
                     Spacer()
                     CustomButtonWidget(text: "Update") {
-                        print("Update Integer tapped")
+                        viewModel.onUpdateInteger()
                     }
                     Spacer()
-                    Text("Integer Value")
+                    Text("\(viewModel.integerValue.description)")
                 }
                 Spacer()
                 HStack {
-                    TextField("Enter Double Value", text: $doubleValue)
+                    TextField("Enter Double Value", text: viewModel.getDoubleText())
                       .textFieldStyle(.roundedBorder)
                       .keyboardType(.numberPad)
                       .disableAutocorrection(true)
                     Spacer()
                     CustomButtonWidget(text: "Update") {
-                        print("Update Double tapped")
+                        viewModel.onUpdateDouble()
                     }
                     Spacer()
-                    Text("Double Value")
+                    Text("\(viewModel.doubleValue)")
                 }
                 Spacer()
             }
+        }.onAppear {
+            viewModel.fetchData()
         }
     }
 }
