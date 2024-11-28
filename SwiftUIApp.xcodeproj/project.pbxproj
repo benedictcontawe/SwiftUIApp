@@ -37,6 +37,7 @@
 		DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */; };
 		DC77CADB2CF81193006731CD /* PrimitiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77CADA2CF81191006731CD /* PrimitiveViewModel.swift */; };
 		DC77CADD2CF838E8006731CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77CADC2CF838E8006731CD /* Constants.swift */; };
+		DC77CADF2CF8480C006731CD /* PrimitiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77CADE2CF8480C006731CD /* PrimitiveModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		DC5D32D82C4E9E8000D6EA61 /* CustomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModel.swift; sourceTree = "<group>"; };
 		DC77CADA2CF81191006731CD /* PrimitiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewModel.swift; sourceTree = "<group>"; };
 		DC77CADC2CF838E8006731CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DC77CADE2CF8480C006731CD /* PrimitiveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				DC24E2DF2C91FF0F00CA74FC /* MainViewModel.swift */,
 				DC5D32C82C4E6B6100D6EA61 /* ObjectView.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ObjectViewModel.swift */,
+				DC77CADE2CF8480C006731CD /* PrimitiveModel.swift */,
 				DC24E2D12C916A1400CA74FC /* PrimitiveView.swift */,
 				DC77CADA2CF81191006731CD /* PrimitiveViewModel.swift */,
 				DC24E2CD2C91648D00CA74FC /* RegisterView.swift */,
@@ -232,6 +235,7 @@
 				DC5D32D92C4E9E8000D6EA61 /* CustomModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ObjectViewModel.swift in Sources */,
 				DC24E2DA2C916E4F00CA74FC /* ScreenNavigationView.swift in Sources */,
+				DC77CADF2CF8480C006731CD /* PrimitiveModel.swift in Sources */,
 				DC24E2D22C916A1500CA74FC /* PrimitiveView.swift in Sources */,
 				DC77CADB2CF81193006731CD /* PrimitiveViewModel.swift in Sources */,
 				DC24E2CC2C9156A400CA74FC /* LoginView.swift in Sources */,
