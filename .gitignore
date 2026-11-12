@@ -1,1 +1,10 @@
-SwiftUIApp.xcworkspace/xcuserdata/benedictcontawe.xcuserdatad/UserInterfaceState.xcuserstate
+# Xcode per-user settings (window layout, breakpoints, selected scheme)
+xcuserdata/
+*.xcuserstate
+
+# Build output
+DerivedData/
+build/
+
+# macOS Finder files
+.DS_Store

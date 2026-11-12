@@ -6,44 +6,75 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @ObservedObject var viewModel = ViewModel()
+    /// `@State` owns an `@Observable` object for the lifetime of the view
+    /// (the iOS 17 replacement for `@StateObject`).
+    @State private var viewModel: ViewModel
+
+    /// Injectable for previews; the app just calls `ContentView()`.
+    /// `@MainActor` because it creates the main-actor `ViewModel`. The default is created in the
+    /// body, not as `= ViewModel()` in the signature: default values aren't main-actor isolated.
+    @MainActor
+    init(viewModel: ViewModel? = nil) {
+        _viewModel = State(initialValue: viewModel ?? ViewModel())
+    }
+
     var body: some View {
-        GeometryReader { geometry in
-            //let horizontalPadding = geometry.size.width * 0.025
-            ZStack {
-                List(Array(viewModel.models .enumerated()), id: \.offset) { index, model in
-                    CardCell(
-                        index: index,
-                        image: model.image,
-                        title: model.title,
-                        explanation: model.explanation,
-                        date: model.date,
-                        copyright: model.copyright
-                    )
-                }.refreshable {
-                    await viewModel.requestAPOD()
-                }
-                //.padding(.leading, horizontalPadding)
-                //.padding(.trailing, horizontalPadding)
-                if viewModel.isLoading {
-                    ProgressView()
-                } else if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                }
+        NavigationStack {
+            List(viewModel.models) { picture in      // rows identified by `picture.id`
+                CardCell(picture: picture)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onAppear() {
-                Task {
-                    await viewModel.requestAPOD()
+            .listStyle(.plain)
+            .navigationTitle("Astronomy Pictures")
+            .overlay { emptyState }
+            .animation(.bouncy, value: viewModel.models)
+            .refreshable { await viewModel.refresh() }   // spinner stays until refresh() returns
+            .task { await viewModel.loadIfNeeded() }     // runs once on appear, cancelled on disappear
+            .alert("Couldn't refresh", isPresented: isShowingRefreshError) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(viewModel.errorMessage ?? "")
+            }
+        }
+    }
+
+    /// Full-screen states, shown only while there is nothing in the list.
+    @ViewBuilder
+    private var emptyState: some View {
+        if viewModel.models.isEmpty {
+            if viewModel.isLoading {
+                ProgressView("Loading pictures…")
+            } else if let message = viewModel.errorMessage {
+                ContentUnavailableView {
+                    Label("No Pictures", systemImage: "wifi.exclamationmark")
+                } description: {
+                    Text(message)
+                } actions: {
+                    Button("Try Again") {
+                        Task { await viewModel.refresh() }
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
             }
         }
     }
+
+    /// A refresh failed while pictures are already on screen → show an alert instead.
+    private var isShowingRefreshError: Binding<Bool> {
+        Binding(
+            get: { viewModel.errorMessage != nil && !viewModel.models.isEmpty },
+            set: { isPresented in if !isPresented { viewModel.errorMessage = nil } }
+        )
+    }
 }
 
-#Preview {
-    ContentView()
+// MARK: - Previews (use the mock service: instant, offline, no API quota)
+
+#Preview("Loaded") {
+    ContentView(viewModel: ViewModel(service: MockAPODService()))
+}
+
+#Preview("Error") {
+    ContentView(viewModel: ViewModel(service: MockAPODService(error: URLError(.notConnectedToInternet))))
 }

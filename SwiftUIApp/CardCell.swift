@@ -7,87 +7,44 @@
 
 import SwiftUI
 
-struct CardCell : View {
-    let index : Int
-    let image : String?
-    let title : String?
-    let explanation : String?
-    let date : String?
-    let copyright : String?
+struct CardCell: View {
+    let picture: NasaResponseModel
+
     var body: some View {
-        Button(
-            action: {/*cellAction()*/},
-            label:  {
-                HStack() {
-                    AsyncImage(
-                        url: URL(string: image ?? ""),
-                        transaction: Transaction(
-                            animation: .spring (
-                                response: 0.5,
-                                dampingFraction: 0.65,
-                                blendDuration: 0.025
-                            )
-                        )
-                    ) { phase in
-                        switch phase {
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(1, contentMode: .fit)
-                                .frame(width: UIScreen.main.bounds.width * 0.2)
-                        case .failure(_):
-                            Image(systemName: "xmark.icloud.fill")
-                                .foregroundColor(.red)
-                                .opacity(0.6)
-                        case .empty:
-                            ProgressView().frame(width: UIScreen.main.bounds.width * 0.2)
-                        @unknown default:
-                            Image(systemName: "photo.fill.on.rectangle.fill")
-                                .foregroundColor(.white)
-                                .opacity(0.6)
-                        }
-                    }
-                    VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
-                        Text(title ?? "Nil")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                        Text(explanation ?? "Nil")
-                            .font(.subheadline)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                    }).frame(width: UIScreen.main.bounds.width * 0.6)
-                    VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
-                        Text(date ?? "Nil")
-                            .font(.footnote)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                        Text(copyright ?? "Nil")
-                            .font(.footnote)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                    }).frame(width: UIScreen.main.bounds.width * 0.2)
-                }
-                .padding(
-                    EdgeInsets(
-                        top: UIScreen.main.bounds.height * 0.01,
-                        leading: UIScreen.main.bounds.width * 0.01,
-                        bottom: UIScreen.main.bounds.height * 0.01,
-                        trailing: UIScreen.main.bounds.width * 0.01
-                    )
-                )
-                .background(Color(.systemGray5))
-                .cornerRadius(5)
-                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        HStack(alignment: .top, spacing: 12) {
+            AsyncImage(url: URL(string: picture.image ?? "")) { image in
+                image.resizable().scaledToFill()
+            } placeholder: {
+                Image(systemName: "photo").foregroundStyle(.secondary)
             }
-        )
+            .frame(width: 72, height: 72)
+            .background(.quaternary)
+            .clipShape(.rect(cornerRadius: 8))
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(picture.title ?? "")
+                    .font(.headline)
+                Text(picture.date)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(picture.explanation ?? "")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(3)
+                if let copyright = picture.copyright {
+                    Text("© \(copyright.trimmingCharacters(in: .whitespacesAndNewlines))")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+        }
+        .padding(.vertical, 6)
     }
 }
 
 #Preview {
-    CardCell(index: 0, image: "Image Url",title: "[Title]", explanation: "[Explanation]", date: "[Date]", copyright: "[Copyright]")
+    CardCell(picture: NasaResponseModel(date: "2024-04-08", title: "Total Solar Eclipse",
+                                        explanation: "The Moon passes between Earth and the Sun.",
+                                        copyright: "Jane Astronomer", image: nil))
+        .padding()
 }
