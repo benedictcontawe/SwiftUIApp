@@ -44,9 +44,9 @@ public protocol AuthenticationCredential {
 
 /// Types adopting the `Authenticator` protocol can be used to authenticate `URLRequest`s with an
 /// `AuthenticationCredential` as well as refresh the `AuthenticationCredential` when required.
-public protocol Authenticator: AnyObject {
+public protocol Authenticator: AnyObject, Sendable {
     /// The type of credential associated with the `Authenticator` instance.
-    associatedtype Credential: AuthenticationCredential
+    associatedtype Credential: AuthenticationCredential & Sendable
 
     /// Applies the `Credential` to the `URLRequest`.
     ///
@@ -81,7 +81,7 @@ public protocol Authenticator: AnyObject {
     ///   - credential: The `Credential` to refresh.
     ///   - session:    The `Session` requiring the refresh.
     ///   - completion: The closure to be executed once the refresh is complete.
-    func refresh(_ credential: Credential, for session: Session, completion: @escaping (Result<Credential, Error>) -> Void)
+    func refresh(_ credential: Credential, for session: Session, completion: @escaping @Sendable (Result<Credential, any Error>) -> Void)
 
     /// Determines whether the `URLRequest` failed due to an authentication error based on the `HTTPURLResponse`.
     ///
@@ -106,7 +106,7 @@ public protocol Authenticator: AnyObject {
     ///   - error:      The `Error`.
     ///
     /// - Returns: `true` if the `URLRequest` failed due to an authentication error, `false` otherwise.
-    func didRequest(_ urlRequest: URLRequest, with response: HTTPURLResponse, failDueToAuthenticationError error: Error) -> Bool
+    func didRequest(_ urlRequest: URLRequest, with response: HTTPURLResponse, failDueToAuthenticationError error: any Error) -> Bool
 
     /// Determines whether the `URLRequest` is authenticated with the `Credential`.
     ///
@@ -126,7 +126,7 @@ public protocol Authenticator: AnyObject {
     /// credential while the request was in flight. If it has already refreshed, then we don't need to trigger an
     /// additional refresh. If it hasn't refreshed, then we need to refresh.
     ///
-    /// Now that it is understood how the result of this method is used in the refresh lifecyle, let's walk through how
+    /// Now that it is understood how the result of this method is used in the refresh lifecycle, let's walk through how
     /// to implement it. You should return `true` in this method if the `URLRequest` is authenticated in a way that
     /// matches the values in the `Credential`. In the case of OAuth2, this would mean that the Bearer token in the
     /// `Authorization` header of the `URLRequest` matches the access token in the `Credential`. If it matches, then we
@@ -157,7 +157,7 @@ public enum AuthenticationError: Error {
 
 /// The `AuthenticationInterceptor` class manages the queuing and threading complexity of authenticating requests.
 /// It relies on an `Authenticator` type to handle the actual `URLRequest` authentication and `Credential` refresh.
-public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor where AuthenticatorType: Authenticator {
+public final class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor, Sendable where AuthenticatorType: Authenticator {
     // MARK: Typealiases
 
     /// Type of credential used to authenticate requests.
@@ -193,7 +193,7 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
     private struct AdaptOperation {
         let urlRequest: URLRequest
         let session: Session
-        let completion: (Result<URLRequest, Error>) -> Void
+        let completion: @Sendable (Result<URLRequest, any Error>) -> Void
     }
 
     private enum AdaptResult {
@@ -202,23 +202,41 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
         case adaptDeferred
     }
 
+    private enum RefreshState {
+        case idle
+        case refreshing
+        case failed(any Error)
+    }
+
     private struct MutableState {
         var credential: Credential?
+        var credentialVersion = 0
 
-        var isRefreshing = false
+        var refreshState: RefreshState = .idle
         var refreshTimestamps: [TimeInterval] = []
         var refreshWindow: RefreshWindow?
 
         var adaptOperations: [AdaptOperation] = []
-        var requestsToRetry: [(RetryResult) -> Void] = []
+        var requestsToRetry: [@Sendable (RetryResult) -> Void] = []
+
+        var isRefreshing: Bool {
+            if case .refreshing = refreshState { return true }
+            return false
+        }
+
+        mutating func updateCredential(_ credential: Credential?) {
+            self.credential = credential
+            credentialVersion += 1
+            refreshState = .idle
+        }
     }
 
     // MARK: Properties
 
     /// The `Credential` used to authenticate requests.
     public var credential: Credential? {
-        get { mutableState.credential }
-        set { mutableState.credential = newValue }
+        get { mutableState.read(\.credential) }
+        set { mutableState.write { $0.updateCredential(newValue) } }
     }
 
     let authenticator: AuthenticatorType
@@ -246,27 +264,42 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
 
     // MARK: Adapt
 
-    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping @Sendable (Result<URLRequest, any Error>) -> Void) {
         let adaptResult: AdaptResult = mutableState.write { mutableState in
-            // Queue the adapt operation if a refresh is already in place.
-            guard !mutableState.isRefreshing else {
+            // Defer only when a proactive (requiresRefresh-driven) refresh is in progress. The triggering request
+            // always appends itself to adaptOperations before isRefreshing is set, so any concurrent adapt that
+            // observes isRefreshing == true also observes a non-empty queue.
+            //
+            // When adaptOperations is empty and isRefreshing is true, the refresh was triggered by the retry path. In
+            // that case, do not defer the adaptation and perform the request using the credential so the full adapter
+            // chain, including any non-idempotent adapters earlier in the chain, reruns from scratch on retry rather
+            // than replaying stale intermediate state.
+            if mutableState.isRefreshing, !mutableState.adaptOperations.isEmpty {
+                // Refresh from requiresRefresh is running, adaptation has been deferred.
                 let operation = AdaptOperation(urlRequest: urlRequest, session: session, completion: completion)
                 mutableState.adaptOperations.append(operation)
                 return .adaptDeferred
             }
 
-            // Throw missing credential error is the credential is missing.
+            // Produce a missing credential error if the credential is missing.
             guard let credential = mutableState.credential else {
                 let error = AuthenticationError.missingCredential
                 return .doNotAdapt(error)
             }
 
-            // Queue the adapt operation and trigger refresh operation if credential requires refresh.
-            guard !credential.requiresRefresh else {
+            // Queue the adapt operation and trigger a proactive refresh if the credential requires it and no refresh
+            // is already in progress.
+            if credential.requiresRefresh, !mutableState.isRefreshing {
                 let operation = AdaptOperation(urlRequest: urlRequest, session: session, completion: completion)
                 mutableState.adaptOperations.append(operation)
                 refresh(credential, for: session, insideLock: &mutableState)
                 return .adaptDeferred
+            }
+
+            // A new request reaching this point represents a fresh request lifecycle. Any prior refresh failure is
+            // stale with respect to this request. Clear it so a subsequent failure can trigger a new refresh.
+            if case .failed = mutableState.refreshState {
+                mutableState.refreshState = .idle
             }
 
             return .adapt(credential)
@@ -289,7 +322,7 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
 
     // MARK: Retry
 
-    public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+    public func retry(_ request: Request, for session: Session, dueTo error: any Error, completion: @escaping @Sendable (RetryResult) -> Void) {
         // Do not attempt retry if there was not an original request and response from the server.
         guard let urlRequest = request.request, let response = request.response else {
             completion(.doNotRetry)
@@ -303,7 +336,13 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
         }
 
         // Do not attempt retry if there is no credential.
-        guard let credential else {
+        guard let (credential, credentialVersion): (Credential, Int) = mutableState.read({ mutableState in
+            if let credential = mutableState.credential {
+                (credential, mutableState.credentialVersion)
+            } else {
+                nil
+            }
+        }) else {
             let error = AuthenticationError.missingCredential
             completion(.doNotRetryWithError(error))
             return
@@ -315,13 +354,29 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
             return
         }
 
-        mutableState.write { mutableState in
-            mutableState.requestsToRetry.append(completion)
-
-            guard !mutableState.isRefreshing else { return }
-
-            refresh(credential, for: session, insideLock: &mutableState)
+        // Otherwise, enqueue the completion for the end of refresh, or immediately resolve if a prior attempt already
+        // determined the outcome for this credential version.
+        let retryResult: RetryResult? = mutableState.write { mutableState in
+            guard credentialVersion == mutableState.credentialVersion else {
+                // Credential was updated during the prechecks, so immediately retry the request with the new credential.
+                return .retry
+            }
+            switch mutableState.refreshState {
+            case let .failed(refreshError):
+                // A refresh was already attempted and failed for this credential version.
+                // Do not queue and do not trigger another refresh.
+                return .doNotRetryWithError(refreshError)
+            case .refreshing:
+                mutableState.requestsToRetry.append(completion)
+                return nil
+            case .idle:
+                mutableState.requestsToRetry.append(completion)
+                refresh(credential, for: session, insideLock: &mutableState)
+                return nil
+            }
         }
+
+        if let result = retryResult { completion(result) }
     }
 
     // MARK: Refresh
@@ -333,8 +388,8 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
             return
         }
 
-        mutableState.refreshTimestamps.append(ProcessInfo.processInfo.systemUptime)
-        mutableState.isRefreshing = true
+        mutableState.refreshTimestamps.append(Instant().value)
+        mutableState.refreshState = .refreshing
 
         // Dispatch to queue to hop out of the lock in case authenticator.refresh is implemented synchronously.
         queue.async {
@@ -354,28 +409,24 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
     private func isRefreshExcessive(insideLock mutableState: inout MutableState) -> Bool {
         guard let refreshWindow = mutableState.refreshWindow else { return false }
 
-        let refreshWindowMin = ProcessInfo.processInfo.systemUptime - refreshWindow.interval
+        let refreshWindowMin = Instant().value - refreshWindow.interval
 
         let refreshAttemptsWithinWindow = mutableState.refreshTimestamps.reduce(into: 0) { attempts, refreshTimestamp in
             guard refreshWindowMin <= refreshTimestamp else { return }
             attempts += 1
         }
 
-        let isRefreshExcessive = refreshAttemptsWithinWindow >= refreshWindow.maximumAttempts
-
-        return isRefreshExcessive
+        return refreshAttemptsWithinWindow >= refreshWindow.maximumAttempts
     }
 
     private func handleRefreshSuccess(_ credential: Credential, insideLock mutableState: inout MutableState) {
-        mutableState.credential = credential
+        mutableState.updateCredential(credential)
 
         let adaptOperations = mutableState.adaptOperations
         let requestsToRetry = mutableState.requestsToRetry
 
         mutableState.adaptOperations.removeAll()
         mutableState.requestsToRetry.removeAll()
-
-        mutableState.isRefreshing = false
 
         // Dispatch to queue to hop out of the mutable state lock
         queue.async {
@@ -384,14 +435,14 @@ public class AuthenticationInterceptor<AuthenticatorType>: RequestInterceptor wh
         }
     }
 
-    private func handleRefreshFailure(_ error: Error, insideLock mutableState: inout MutableState) {
+    private func handleRefreshFailure(_ error: any Error, insideLock mutableState: inout MutableState) {
         let adaptOperations = mutableState.adaptOperations
         let requestsToRetry = mutableState.requestsToRetry
 
         mutableState.adaptOperations.removeAll()
         mutableState.requestsToRetry.removeAll()
 
-        mutableState.isRefreshing = false
+        mutableState.refreshState = .failed(error)
 
         // Dispatch to queue to hop out of the mutable state lock
         queue.async {
