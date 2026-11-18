@@ -7,21 +7,20 @@
 
 import Foundation
 
-// Sent as the query string: ?api_key=...&count=5
 struct NasaRequestModel: Encodable {
-    let key: String
-    let count: Int
+    var key: String? = nil
+    var count: Int? = nil
 
     private enum CodingKeys: String, CodingKey {
         case key = "api_key"
-        case count
+        case count = "count"
     }
 
     /*
      Not needed: Swift generates this "memberwise" init for structs automatically.
      Uncomment only if you need custom logic (e.g. validation or default values).
 
-    init(key: String, count: Int) {
+    init(key: String? = nil, count: Int? = nil) {
         self.key = key
         self.count = count
     }
@@ -33,16 +32,16 @@ struct NasaRequestModel: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(key, forKey: .key)
-        try container.encode(count, forKey: .count)
+        try container.encodeIfPresent(key, forKey: .key)
+        try container.encodeIfPresent(count, forKey: .count)
     }
     */
 }
 
-// Like toString() in Kotlin/Java: controls what print(request) shows.
-// The API key is masked so it never ends up in logs.
 extension NasaRequestModel: CustomStringConvertible {
+    private static let TAG = String(describing: NasaRequestModel.self)
+
     var description: String {
-        "NasaRequestModel(key: \(key.prefix(4))****, count: \(count))"
+        "\(Self.TAG)(\(key ?? "null"), \(count.map(String.init) ?? "null"))"
     }
 }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CardCell: View {
-    let picture: NasaResponseModel
+    let model: NasaHolderModel
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            AsyncImage(url: URL(string: picture.image ?? "")) { image in
+            AsyncImage(url: URL(string: model.image)) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
                 Image(systemName: "photo").foregroundStyle(.secondary)
@@ -22,17 +22,18 @@ struct CardCell: View {
             .clipShape(.rect(cornerRadius: 8))
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(picture.title ?? "")
+                Text(model.title)
                     .font(.headline)
-                Text(picture.date)
+                Text(model.date)
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                Text(picture.explanation ?? "")
+                Text(model.explanation)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .lineLimit(3)
-                if let copyright = picture.copyright {
-                    Text("© \(copyright.trimmingCharacters(in: .whitespacesAndNewlines))")
+                let copyright = model.copyright.trimmingCharacters(in: .whitespacesAndNewlines)
+                if !copyright.isEmpty {
+                    Text("© \(copyright)")
                         .font(.caption2)
                         .foregroundStyle(.tertiary)
                 }
@@ -43,8 +44,8 @@ struct CardCell: View {
 }
 
 #Preview {
-    CardCell(picture: NasaResponseModel(date: "2024-04-08", title: "Total Solar Eclipse",
-                                        explanation: "The Moon passes between Earth and the Sun.",
-                                        copyright: "Jane Astronomer", image: nil))
+    CardCell(model: NasaHolderModel(response: NasaResponseModel(
+        title: "Total Solar Eclipse", copyright: "Jane Astronomer", date: "2024-04-08",
+        hdurl: nil, explanation: "The Moon passes between Earth and the Sun.")))
         .padding()
 }

@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4319F2333A37C925624C2B02 /* Pods_SwiftUIApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */; };
-		DC1C12642C6DE2960060A050 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12632C6DE2960060A050 /* NetworkManager.swift */; };
+		DC1C12802C6DE2960060A050 /* NasaHolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C127F2C6DE2960060A050 /* NasaHolderModel.swift */; };
+		DC1C12732C6DE2960060A050 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12722C6DE2960060A050 /* Repository.swift */; };
+		DC1C127E2C6DE2960060A050 /* NasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C127D2C6DE2960060A050 /* NasaAPI.swift */; };
+		DC1C12712C6DE2960060A050 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12702C6DE2960060A050 /* Constants.swift */; };
 		DC1C12662C6DE95C0060A050 /* NasaResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */; };
 		DC1C12682C6DEC620060A050 /* NasaRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */; };
 		DC1C126A2C6DF6DE0060A050 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12692C6DF6DE0060A050 /* CardCell.swift */; };
@@ -23,7 +26,10 @@
 		1AF0D2F83678A37C8518C3ED /* Pods-SwiftUIApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp.release.xcconfig"; sourceTree = "<group>"; };
 		A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftUIApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2260BC3ADF4AAED9295BEF7 /* Pods-SwiftUIApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DC1C12632C6DE2960060A050 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DC1C127F2C6DE2960060A050 /* NasaHolderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaHolderModel.swift; sourceTree = "<group>"; };
+		DC1C12722C6DE2960060A050 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		DC1C127D2C6DE2960060A050 /* NasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaAPI.swift; sourceTree = "<group>"; };
+		DC1C12702C6DE2960060A050 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaResponseModel.swift; sourceTree = "<group>"; };
 		DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaRequestModel.swift; sourceTree = "<group>"; };
 		DC1C12692C6DF6DE0060A050 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -86,7 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
-				DC1C12632C6DE2960060A050 /* NetworkManager.swift */,
+				DC1C127F2C6DE2960060A050 /* NasaHolderModel.swift */,
+				DC1C12722C6DE2960060A050 /* Repository.swift */,
+				DC1C127D2C6DE2960060A050 /* NasaAPI.swift */,
+				DC1C12702C6DE2960060A050 /* Constants.swift */,
 				DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */,
 				DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
@@ -220,7 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1C12642C6DE2960060A050 /* NetworkManager.swift in Sources */,
+				DC1C12802C6DE2960060A050 /* NasaHolderModel.swift in Sources */,
+				DC1C12732C6DE2960060A050 /* Repository.swift in Sources */,
+				DC1C127E2C6DE2960060A050 /* NasaAPI.swift in Sources */,
+				DC1C12712C6DE2960060A050 /* Constants.swift in Sources */,
 				DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */,
 				DC1C12662C6DE95C0060A050 /* NasaResponseModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */,

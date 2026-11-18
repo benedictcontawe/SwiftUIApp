@@ -7,19 +7,20 @@
 
 import Foundation
 
-struct NasaResponseModel: Decodable, Identifiable, Hashable {
-    let date: String
-    let title: String?
-    let explanation: String?
-    let copyright: String?
-    let image: String?
+struct NasaResponseModel: Decodable, Hashable {
+    var title: String? = nil
+    var copyright: String? = nil
+    var date: String? = nil
+    var hdurl: String? = nil
+    var explanation: String? = nil
 
-    // One picture per date, so the date is a unique id for the List
-    var id: String { date }
-
+    // Like @SerializedName in Gson: Swift property name → JSON name
     private enum CodingKeys: String, CodingKey {
-        case date, title, explanation, copyright
-        case image = "hdurl"
+        case title = "title"
+        case copyright = "copyright"
+        case date = "date"
+        case hdurl = "hdurl"
+        case explanation = "explanation"
     }
 
     /*
@@ -28,41 +29,39 @@ struct NasaResponseModel: Decodable, Identifiable, Hashable {
      This is what Swift generates for you:
 
     static func == (lhs: NasaResponseModel, rhs: NasaResponseModel) -> Bool {
-        lhs.date == rhs.date &&
         lhs.title == rhs.title &&
-        lhs.explanation == rhs.explanation &&
         lhs.copyright == rhs.copyright &&
-        lhs.image == rhs.image
+        lhs.date == rhs.date &&
+        lhs.hdurl == rhs.hdurl &&
+        lhs.explanation == rhs.explanation
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(date)
         hasher.combine(title)
-        hasher.combine(explanation)
         hasher.combine(copyright)
-        hasher.combine(image)
+        hasher.combine(date)
+        hasher.combine(hdurl)
+        hasher.combine(explanation)
     }
 
-     If you ever need a custom version, compare by something unique (the date / id),
+     If you ever need a custom version, compare by something unique (the date),
      never by `title` (the API returns "NASA Science" for many entries).
      `==` and `hash` must always use the same fields:
 
     static func == (lhs: NasaResponseModel, rhs: NasaResponseModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.date == rhs.date
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(date)
     }
     */
 }
 
-// Like toString() in Kotlin/Java: controls what print(model) shows.
-// Long text is shortened to keep console logs readable.
 extension NasaResponseModel: CustomStringConvertible {
+    private static let TAG = String(describing: NasaResponseModel.self)
+
     var description: String {
-        "NasaResponseModel(date: \(date), title: \(title ?? "nil"), "
-        + "copyright: \(copyright ?? "nil"), image: \(image ?? "nil"), "
-        + "explanation: \((explanation ?? "nil").prefix(40))…)"
+        "\(Self.TAG)(\(title ?? "null"), \(copyright ?? "null"), \(date ?? "null"), \(hdurl ?? "null"), \(explanation ?? "null"))"
     }
 }
