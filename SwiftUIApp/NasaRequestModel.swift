@@ -7,21 +7,24 @@
 
 import Foundation
 
-// Sent as the query string: ?api_key=...&count=5
+/// Mirrors `NasaRequestModel.kt`: same fields, same order, same JSON names.
+/// Sent as the query string: ?api_key=...&count=10 (nil values are left out).
 struct NasaRequestModel: Encodable {
-    let key: String
-    let count: Int
+    var key: String? = nil      // @SerializedName("api_key")
+    var count: Int? = nil       // @SerializedName("count")
 
+    // Like @SerializedName in Gson: Swift property name → JSON / query name
     private enum CodingKeys: String, CodingKey {
         case key = "api_key"
-        case count
+        case count = "count"
     }
 
     /*
-     Not needed: Swift generates this "memberwise" init for structs automatically.
+     Not needed: Swift generates this "memberwise" init for structs automatically
+     (with the `= nil` defaults, like Kotlin's default arguments).
      Uncomment only if you need custom logic (e.g. validation or default values).
 
-    init(key: String, count: Int) {
+    init(key: String? = nil, count: Int? = nil) {
         self.key = key
         self.count = count
     }
@@ -29,20 +32,22 @@ struct NasaRequestModel: Encodable {
 
     /*
      Not needed: Swift generates encode(to:) from `Encodable` + `CodingKeys` automatically.
+     For optionals it uses encodeIfPresent, which skips nil values.
      Uncomment only if the output must differ from the properties (e.g. skip or combine fields).
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(key, forKey: .key)
-        try container.encode(count, forKey: .count)
+        try container.encodeIfPresent(key, forKey: .key)
+        try container.encodeIfPresent(count, forKey: .count)
     }
     */
 }
 
-// Like toString() in Kotlin/Java: controls what print(request) shows.
-// The API key is masked so it never ends up in logs.
+// Like `override fun toString()` in NasaRequestModel.kt: "$TAG($key, $count)"
 extension NasaRequestModel: CustomStringConvertible {
+    private static let TAG = String(describing: NasaRequestModel.self)
+
     var description: String {
-        "NasaRequestModel(key: \(key.prefix(4))****, count: \(count))"
+        "\(Self.TAG)(\(key ?? "null"), \(count.map(String.init) ?? "null"))"
     }
 }

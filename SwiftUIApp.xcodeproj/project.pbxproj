@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25C1318630ADC28500DE9D46 /* NasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C1318530ADC27000DE9D46 /* NasaAPI.swift */; };
 		4319F2333A37C925624C2B02 /* Pods_SwiftUIApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */; };
-		DC1C12642C6DE2960060A050 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12632C6DE2960060A050 /* NetworkManager.swift */; };
 		DC1C12662C6DE95C0060A050 /* NasaResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */; };
 		DC1C12682C6DEC620060A050 /* NasaRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */; };
 		DC1C126A2C6DF6DE0060A050 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12692C6DF6DE0060A050 /* CardCell.swift */; };
+		DC1C12712C6DE2960060A050 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12702C6DE2960060A050 /* Constants.swift */; };
+		DC1C12732C6DE2960060A050 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12722C6DE2960060A050 /* Repository.swift */; };
+		DC1C12752C6DE2960060A050 /* NasaPagingSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12742C6DE2960060A050 /* NasaPagingSource.swift */; };
+		DC1C12772C6DE2960060A050 /* PagingSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C12762C6DE2960060A050 /* PagingSource.swift */; };
 		DC5D32C72C4E6B6100D6EA61 /* SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */; };
 		DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */; };
 		DC5D32CD2C4E6B6300D6EA61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5D32CC2C4E6B6300D6EA61 /* Assets.xcassets */; };
@@ -21,12 +25,16 @@
 
 /* Begin PBXFileReference section */
 		1AF0D2F83678A37C8518C3ED /* Pods-SwiftUIApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp.release.xcconfig"; sourceTree = "<group>"; };
+		25C1318530ADC27000DE9D46 /* NasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaAPI.swift; sourceTree = "<group>"; };
 		A00AF47B29CF2EEFA63863A7 /* Pods_SwiftUIApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftUIApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2260BC3ADF4AAED9295BEF7 /* Pods-SwiftUIApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DC1C12632C6DE2960060A050 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaResponseModel.swift; sourceTree = "<group>"; };
 		DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaRequestModel.swift; sourceTree = "<group>"; };
 		DC1C12692C6DF6DE0060A050 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		DC1C12702C6DE2960060A050 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DC1C12722C6DE2960060A050 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		DC1C12742C6DE2960060A050 /* NasaPagingSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaPagingSource.swift; sourceTree = "<group>"; };
+		DC1C12762C6DE2960060A050 /* PagingSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingSource.swift; sourceTree = "<group>"; };
 		DC5D32C32C4E6B6100D6EA61 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIApp.swift; sourceTree = "<group>"; };
 		DC5D32C82C4E6B6100D6EA61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,8 +93,12 @@
 		DC5D32C52C4E6B6100D6EA61 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
+				25C1318530ADC27000DE9D46 /* NasaAPI.swift */,
+				DC1C127C2C6DE2960060A050 /* paging */,
+				DC1C12742C6DE2960060A050 /* NasaPagingSource.swift */,
+				DC1C12722C6DE2960060A050 /* Repository.swift */,
 				DC5D32C62C4E6B6100D6EA61 /* SwiftUIApp.swift */,
-				DC1C12632C6DE2960060A050 /* NetworkManager.swift */,
+				DC1C12702C6DE2960060A050 /* Constants.swift */,
 				DC1C12672C6DEC620060A050 /* NasaRequestModel.swift */,
 				DC1C12652C6DE95C0060A050 /* NasaResponseModel.swift */,
 				DC5D32D62C4E9D7000D6EA61 /* ViewModel.swift */,
@@ -96,6 +108,14 @@
 				DC5D32CE2C4E6B6300D6EA61 /* Preview Content */,
 			);
 			path = SwiftUIApp;
+			sourceTree = "<group>";
+		};
+		DC1C127C2C6DE2960060A050 /* paging */ = {
+			isa = PBXGroup;
+			children = (
+				DC1C12762C6DE2960060A050 /* PagingSource.swift */,
+			);
+			path = paging;
 			sourceTree = "<group>";
 		};
 		DC5D32CE2C4E6B6300D6EA61 /* Preview Content */ = {
@@ -182,9 +202,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftUIApp/Pods-SwiftUIApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -220,7 +244,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1C12642C6DE2960060A050 /* NetworkManager.swift in Sources */,
+				25C1318630ADC28500DE9D46 /* NasaAPI.swift in Sources */,
+				DC1C12772C6DE2960060A050 /* PagingSource.swift in Sources */,
+				DC1C12752C6DE2960060A050 /* NasaPagingSource.swift in Sources */,
+				DC1C12732C6DE2960060A050 /* Repository.swift in Sources */,
+				DC1C12712C6DE2960060A050 /* Constants.swift in Sources */,
 				DC5D32C92C4E6B6100D6EA61 /* ContentView.swift in Sources */,
 				DC1C12662C6DE95C0060A050 /* NasaResponseModel.swift in Sources */,
 				DC5D32D72C4E9D7000D6EA61 /* ViewModel.swift in Sources */,

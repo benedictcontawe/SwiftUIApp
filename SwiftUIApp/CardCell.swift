@@ -12,7 +12,7 @@ struct CardCell: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            AsyncImage(url: URL(string: picture.image ?? "")) { image in
+            AsyncImage(url: URL(string: picture.hdurl ?? "")) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
                 Image(systemName: "photo").foregroundStyle(.secondary)
@@ -24,7 +24,7 @@ struct CardCell: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(picture.title ?? "")
                     .font(.headline)
-                Text(picture.date)
+                Text(picture.date ?? "")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Text(picture.explanation ?? "")
@@ -43,8 +43,8 @@ struct CardCell: View {
 }
 
 #Preview {
-    CardCell(picture: NasaResponseModel(date: "2024-04-08", title: "Total Solar Eclipse",
-                                        explanation: "The Moon passes between Earth and the Sun.",
-                                        copyright: "Jane Astronomer", image: nil))
+    CardCell(picture: NasaResponseModel(title: "Total Solar Eclipse", copyright: "Jane Astronomer",
+                                        date: "2024-04-08", hdurl: nil,
+                                        explanation: "The Moon passes between Earth and the Sun."))
         .padding()
 }
